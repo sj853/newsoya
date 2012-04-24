@@ -15,36 +15,11 @@
 	$db->Close();
 	
 ?>
-<!doctype html>
-<html>
-<head>
-<meta charset="urf-8">
-<meta name="keywords" content="搜呀365,365搜,365">
-
-<meta name="description" content="搜呀365 www.soya365.com关注最新网络热点事件、新闻,精心为你盘点身边大事小事资讯。搜呀365提供最新搜索，如最热门的话题，最新的新闻事件。搜呀365为呈现365天，天天搜索，热门排行">
-
-<title>搜呀365 www.soya365.com</title>
-
-<link rel="shortcut icon" href="favicon.ico" />
-<link rel="stylesheet" href="css/global.css"/>
-<!--[if IE]>
-<link rel="stylesheet" href="css/search-ie.css" />
-<![endif]-->
-<![if !IE]>
-<link rel="stylesheet" href="css/search.css" />
-<![endif]>
-<link rel="stylesheet" href="css/customer.css" />
- <!-- JiaThis Button BEGIN -->
-
-
-<style type="text/css">
-.rank-entry{margin-bottom:88px}
-</style>
-</head>
-<body id="index">
+<?php include "header.php"?>
+<body>
 
 <script type="text/javascript" src="http://v2.jiathis.com/code/jiathis_r.js?move=0&amp;btn=r5.gif" charset="utf-8"></script>
-<!-- JiaThis Button END -->
+
 
 <div id="site-nav">
 <div id="site-nav-bd">
