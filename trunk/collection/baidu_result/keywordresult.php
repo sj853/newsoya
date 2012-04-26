@@ -70,6 +70,8 @@
 		$keywordresult = "";
 		
 		
+		
+		
 		 preg_match_all('#<td class=f><h3 class="t"><a[^$]+href="([^$]+)"[^$]+>([^$]+)</a>[^$]+</h3>[^$]*<font size=-1>([^$]+)<span class="g">[^$]+</font>[^$]*</td>#U',$con,$result);
 	  
 		  
