@@ -57,24 +57,28 @@
 			echo "fail";
 			exit;
 		}
+		
+		$kwLike = match('<div id="rs">([^$]+)</div>',$con);
+		
+		
+		$likes = preg_match_all('#<a[^$]+>([^$]+)</a>#U',$kwLike);
+		
 
-		$con = match('#<div id="container">([^$]+)<br clear=all>#U', $con);
+		$resultHtml = match('#<div id="container">([^$]+)<br clear=all>#U', $con);
 		
 	 
 		$pattern = '#<table width="30%" cellpadding="0" cellspacing="0" align="right">[^$]+</table>#U';
 		$replacement = " ";
-		$result = preg_replace($pattern, $replacement, $con);
+		$result = preg_replace($pattern, $replacement, $resultHtml);
 		$pattern = '#<p class="to_zhidao">[^$]+</p>#U';
-		$con = preg_replace($pattern, $replacement, $result);
+		$resultHtml = preg_replace($pattern, $replacement, $result);
 
 		$keywordresult = "";
-		
-		
-		
-		
-		 preg_match_all('#<td class=f><h3 class="t"><a[^$]+href="([^$]+)"[^$]+>([^$]+)</a>[^$]+</h3>[^$]*<font size=-1>([^$]+)<span class="g">[^$]+</font>[^$]*</td>#U',$con,$result);
+		 
+		preg_match_all('#<td class=f><h3 class="t"><a[^$]+href="([^$]+)"[^$]+>([^$]+)</a>[^$]+</h3>[^$]*<font size=-1>([^$]+)<span class="g">[^$]+</font>[^$]*</td>#U',$resultHtml,$result);
 	  
 		  
+		$result[4] = $likes;
 	 
 		return  $result;
 
