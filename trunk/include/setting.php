@@ -6,4 +6,8 @@
 		"site_keywords" => "",
 		"site_content" => "",
 	);
+	
+	$filterwords = array(
+		"新浪微博","百度知道"
+	);
 ?>
