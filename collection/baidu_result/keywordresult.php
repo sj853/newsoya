@@ -4,13 +4,15 @@
 	
 	//require_once ("database.php");
 
-
-	//include_once ("include.php");
+include_once ('include.php');
+	include_once ("data_cache.php");
 	
- 
-	
-
+	 $rs = getResultByBaiDu('AA制生活',3);
+	 setCache('AA制生活',$rs,3);
+	print_r(getCache('AA制生活',3));
 	function insertKeyResults() {
+	
+	   
 
 		$db = Database :: Connect();
 
@@ -38,10 +40,39 @@
 		$db->Close();
 
 	}
+	
+	function getRelatedResultByBaiDu($keys){
+		$con = getBaiduHtml($keys,$page);
+		$kwLike = match('#<div id="rs">([^$]+)</div>#U',$con);
+		$likes = match_all('#<a[^$]+>([^$]+)</a>#U',$kwLike);
+		return $likes;
+	}
 
 	function getResultByBaiDu($keys,$page=1) {
 		 
-		include_once ('include.php');		 
+		$con = getBaiduHtml($keys,$page);
+		 
+		$resultHtml = match('#<div id="container">([^$]+)<br clear=all>#U', $con);
+		 
+		$pattern = '#<table width="30%" cellpadding="0" cellspacing="0" align="right">[^$]+</table>#U';
+		$replacement = " ";
+		$result = preg_replace($pattern, $replacement, $resultHtml);
+		$pattern = '#<p class="to_zhidao">[^$]+</p>#U';
+		$resultHtml = preg_replace($pattern, $replacement, $result);
+
+		$keywordresult = "";
+		 
+		preg_match_all('#<td class=f><h3 class="t"><a[^$]+href="([^$]+)"[^$]+>([^$]+)</a>[^$]+</h3>[^$]*<font size=-1>([^$]+)<span class="g">[^$]+</font>[^$]*</td>#U',$resultHtml,$result);
+	 
+		return $result;
+
+	}
+ 
+	
+	function getBaiduHtml($keys,$page=1){
+
+		
+		
 		set_time_limit(0);
 		
 		$url = "http://www.baidu.com/s?wd=" . urlencode($keys) . "&pn=".(($page-1)*10);
@@ -57,55 +88,7 @@
 			echo "fail";
 			exit;
 		}
-		
-		$kwLike = match('<div id="rs">([^$]+)</div>',$con);
-		
-		
-		$likes = preg_match_all('#<a[^$]+>([^$]+)</a>#U',$kwLike);
-		
-
-		$resultHtml = match('#<div id="container">([^$]+)<br clear=all>#U', $con);
-		
-	 
-		$pattern = '#<table width="30%" cellpadding="0" cellspacing="0" align="right">[^$]+</table>#U';
-		$replacement = " ";
-		$result = preg_replace($pattern, $replacement, $resultHtml);
-		$pattern = '#<p class="to_zhidao">[^$]+</p>#U';
-		$resultHtml = preg_replace($pattern, $replacement, $result);
-
-		$keywordresult = "";
-		 
-		preg_match_all('#<td class=f><h3 class="t"><a[^$]+href="([^$]+)"[^$]+>([^$]+)</a>[^$]+</h3>[^$]*<font size=-1>([^$]+)<span class="g">[^$]+</font>[^$]*</td>#U',$resultHtml,$result);
-	  
-		  
-		$result[4] = $likes;
-	 
-		return  $result;
-
-	}
-
-	function getOtherKeys() {
-	
-		include_once "include.php";
-		 
-		 $con = gettext("temp", "baidutemp");
-		 
-		  
-		 $result = match('#<div id="rs">([^$]+)</div>#U',$con);
-		 
-		 $likewords = match_all('#<a[^$]+>([^$]+)</a>#U',$result);
-		 
-		 $likes = "";
-		 shuffle($likewords);
-		 foreach($likewords as $word){
-			  
-		     $likes .= '<dd><a href="search.php?keys='.urldecode($word).'">'.$word.'</a></dd>';
-		      
-		 }
-		 
-		 
-	      
-		return $likes;
+		return $html;
 	}
 	
 	 function filter($html){
@@ -117,31 +100,11 @@
 	   }
 
 	function encodeurl($matches) {
+		
 		$jumpUrl = "jump.php";
 
 		return $jumpUrl . "?to=" . base64_encode($matches[0]);
 	}
 	
-	function compress_html($string) { 
-		$string = str_replace("\r\n", '', $string); //清除换行符 
-		$string = str_replace("\n", '', $string); //清除换行符 
-		$string = str_replace("\t", '', $string); //清除制表符 
-		$pattern = array ( 
-		"/> *([^ ]*) *</", //去掉注释标记 
-		"/[\s]+/", 
-		"/<!--[^!]*-->/", 
-		"/\" /", 
-		"/ \"/", 
-		"'/\*[^*]*\*/'" 
-		); 
-		$replace = array ( 
-		">\\1<", 
-		" ", 
-		"", 
-		"\"", 
-		"\"", 
-		"" 
-		); 
-		return preg_replace($pattern, $replace, $string); 
-} 
+ 
 ?>	
