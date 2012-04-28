@@ -11,7 +11,7 @@
 	 
 	function insertKeyWords(){
 	$db = Database :: Connect();
-	//$db ->setNamesGB2312();
+	 
 	   $keyword = $db->GetSingleValOrDefault("select keyword from keyword_task where type=4 and hotval=1 order by time desc limit 1","");
 	
 	  
