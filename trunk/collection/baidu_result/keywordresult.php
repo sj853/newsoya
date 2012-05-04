@@ -10,9 +10,10 @@ include_once ('include.php');
 	 $rs = getResultByBaiDu('AA制生活',3);
 	 setCache('AA制生活',$rs,3);
 	print_r(getCache('AA制生活',3));
-	function insertKeyResults() {
 	
-	   
+	
+	function insertKeyResults() {
+			   
 
 		$db = Database :: Connect();
 
@@ -70,9 +71,7 @@ include_once ('include.php');
  
 	
 	function getBaiduHtml($keys,$page=1){
-
-		
-		
+ 
 		set_time_limit(0);
 		
 		$url = "http://www.baidu.com/s?wd=" . urlencode($keys) . "&pn=".(($page-1)*10);
