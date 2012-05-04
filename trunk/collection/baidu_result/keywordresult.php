@@ -17,7 +17,7 @@ include_once ('include.php');
 
 		$db = Database :: Connect();
 
-		$sql = "select id,keyword from keyword_task where id in (select kid from keyword_result where content='') order by time desc,hotval desc";
+		$sql = "select id,keyword from kw_task where id in (select kid from kw_result where content='') order by time desc,hotval desc limit 1";
 
 		$rs = $db->GetResultSet($sql);
 		 
@@ -34,7 +34,7 @@ include_once ('include.php');
 			
 			$likes = getOtherKeys();
 			
-			$db->insert_keywords_result($kid, addslashes(htmlspecialchars($content)),addslashes(htmlspecialchars($likes)),strip_tags($desc));
+			//$db->insert_keywords_result($kid, addslashes(htmlspecialchars($content)),addslashes(htmlspecialchars($likes)),strip_tags($desc));
 			 
 
 		}
