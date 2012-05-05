@@ -1,5 +1,5 @@
 <?php
-//»ñÈ¡À´×ÔËÑË÷ÒýÇæÈëÕ¾Ê±µÄ¹Ø¼ü´Ê
+//èŽ·å–æ¥è‡ªæœç´¢å¼•æ“Žå…¥ç«™æ—¶çš„å…³é”®è¯
 function get_keyword($url,$kw_start){
   $start=stripos($url,$kw_start);
   $url=substr($url,$start+strlen($kw_start));
@@ -16,7 +16,7 @@ function get_keyword($url,$kw_start){
   return $s_s_keyword;
 }
  
- $url=isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:'';//»ñÈ¡ÈëÕ¾url¡£
+ $url=isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:'';//èŽ·å–å…¥ç«™urlã€‚
 
  $search_1="google.com"; //q= utf8
  $search_2="baidu.com"; //wd= gbk
@@ -26,7 +26,7 @@ function get_keyword($url,$kw_start){
  $search_6="bing.com"; //q= utf8
  $search_7="youdao.com"; //q= utf8
  
- $google=preg_match("/\b{$search_1}\b/",$url);//¼ÇÂ¼Æ¥ÅäÇé¿ö£¬ÓÃÓÚÈëÕ¾ÅÐ¶Ï¡£
+ $google=preg_match("/\b{$search_1}\b/",$url);//è®°å½•åŒ¹é…æƒ…å†µï¼Œç”¨äºŽå…¥ç«™åˆ¤æ–­ã€‚
  $baidu=preg_match("/\b{$search_2}\b/",$url);
  $yahoo=preg_match("/\b{$search_3}\b/",$url);
  $sogou=preg_match("/\b{$search_4}\b/",$url);
@@ -36,46 +36,46 @@ function get_keyword($url,$kw_start){
  $s_s_keyword="";
 
    if ($google)
-  {//À´×Ôgoogle
-   $s_s_keyword=get_keyword($url,'q=');//¹Ø¼ü´ÊÇ°µÄ×Ö·ûÎª"q="¡£
+  {//æ¥è‡ªgoogle
+   $s_s_keyword=get_keyword($url,'q=');//å…³é”®è¯å‰çš„å­—ç¬¦ä¸º"q="ã€‚
    $s_s_keyword=urldecode($s_s_keyword);
-   //$s_s_keyword=iconv("GBK","UTF-8",$s_s_keyword);//ÒýÇæÎªgbk
+   //$s_s_keyword=iconv("GBK","UTF-8",$s_s_keyword);//å¼•æ“Žä¸ºgbk
   }
   else if($baidu)
-  {//À´×Ô°Ù¶È
-   $s_s_keyword=get_keyword($url,'wd=');//¹Ø¼ü´ÊÇ°µÄ×Ö·ûÎª"wd="¡£
+  {//æ¥è‡ªç™¾åº¦
+   $s_s_keyword=get_keyword($url,'wd=');//å…³é”®è¯å‰çš„å­—ç¬¦ä¸º"wd="ã€‚
    $s_s_keyword=urldecode($s_s_keyword);
-   $s_s_keyword=iconv("GBK","UTF-8",$s_s_keyword);//ÒýÇæÎªgbk
+   $s_s_keyword=iconv("GBK","UTF-8",$s_s_keyword);//å¼•æ“Žä¸ºgbk
   }
   else if($yahoo)
-  {//À´×ÔÑÅ»¢
-   $s_s_keyword=get_keyword($url,'q=');//¹Ø¼ü´ÊÇ°µÄ×Ö·ûÎª"q="¡£
+  {//æ¥è‡ªé›…è™Ž
+   $s_s_keyword=get_keyword($url,'q=');//å…³é”®è¯å‰çš„å­—ç¬¦ä¸º"q="ã€‚
    $s_s_keyword=urldecode($s_s_keyword);
-   //$s_s_keyword=iconv("GBK","UTF-8",$s_s_keyword);//ÒýÇæÎªgbk
+   //$s_s_keyword=iconv("GBK","UTF-8",$s_s_keyword);//å¼•æ“Žä¸ºgbk
   }
   else if($sogou)
-  {//À´×ÔËÑ¹·
-   $s_s_keyword=get_keyword($url,'query=');//¹Ø¼ü´ÊÇ°µÄ×Ö·ûÎª"query="¡£
+  {//æ¥è‡ªæœç‹—
+   $s_s_keyword=get_keyword($url,'query=');//å…³é”®è¯å‰çš„å­—ç¬¦ä¸º"query="ã€‚
    $s_s_keyword=urldecode($s_s_keyword);
-  // $s_s_keyword=iconv("GBK","UTF-8",$s_s_keyword);//ÒýÇæÎªgbk
+  // $s_s_keyword=iconv("GBK","UTF-8",$s_s_keyword);//å¼•æ“Žä¸ºgbk
   }
   else if($soso)
-  {//À´×ÔËÑËÑ
-   $s_s_keyword=get_keyword($url,'w=');//¹Ø¼ü´ÊÇ°µÄ×Ö·ûÎª"w="¡£
+  {//æ¥è‡ªæœæœ
+   $s_s_keyword=get_keyword($url,'w=');//å…³é”®è¯å‰çš„å­—ç¬¦ä¸º"w="ã€‚
    $s_s_keyword=urldecode($s_s_keyword);
-   //$s_s_keyword=iconv("GBK","UTF-8",$s_s_keyword);//ÒýÇæÎªgbk
+   //$s_s_keyword=iconv("GBK","UTF-8",$s_s_keyword);//å¼•æ“Žä¸ºgbk
   }
   else if($bing)
-  {//À´×Ô±ØÓ¦
-   $s_s_keyword=get_keyword($url,'q=');//¹Ø¼ü´ÊÇ°µÄ×Ö·ûÎª"q="¡£
+  {//æ¥è‡ªå¿…åº”
+   $s_s_keyword=get_keyword($url,'q=');//å…³é”®è¯å‰çš„å­—ç¬¦ä¸º"q="ã€‚
    $s_s_keyword=urldecode($s_s_keyword);
-   //$s_s_keyword=iconv("GBK","UTF-8",$s_s_keyword);//ÒýÇæÎªgbk
+   //$s_s_keyword=iconv("GBK","UTF-8",$s_s_keyword);//å¼•æ“Žä¸ºgbk
   }
   else if($youdao)
-  {//À´×ÔÓÐµÀ
-   $s_s_keyword=get_keyword($url,'q=');//¹Ø¼ü´ÊÇ°µÄ×Ö·ûÎª"q="¡£
+  {//æ¥è‡ªæœ‰é“
+   $s_s_keyword=get_keyword($url,'q=');//å…³é”®è¯å‰çš„å­—ç¬¦ä¸º"q="ã€‚
    $s_s_keyword=urldecode($s_s_keyword);
-   //$s_s_keyword=iconv("GBK","UTF-8",$s_s_keyword);//ÒýÇæÎªgbk
+   //$s_s_keyword=iconv("GBK","UTF-8",$s_s_keyword);//å¼•æ“Žä¸ºgbk
   }
 
   echo $s_s_keyword;

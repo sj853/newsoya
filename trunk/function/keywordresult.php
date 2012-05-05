@@ -111,7 +111,7 @@
 	 function filter($html){
 		$html = str_replace("$",'',$html);
 		 
-		$html = str_replace("百度快照","查看快照",$html);
+		$html = str_replace("鐧惧害蹇収","鏌ョ湅蹇収",$html);
 		$html = preg_replace('#(onmousedown=[^$]+)"#U','rel="nofollow"',$html);
 		return $html;
 	   }
