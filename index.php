@@ -37,9 +37,13 @@
 			
 				<div class="search-ipt2 clearfix">
 					<h3>最新搜索：</h3>
+					 
 					<ul class="latest">
-					<?php for($i=0;$i<count($aizhanresult);$i++){ ?>
-					<li><?php echo $i+1;?>.<a href="" ><?php echo $aizhanresult[$i]?></a></li>				 
+					 <?php
+						$i=1;
+					 while($row = mysql_fetch_array($aizhanresult)){
+					?>
+					<li><?php echo $i++?>.<a href=""><?php echo $row['keyword']?></a></li>				 
 					<?php } ?>
 					</ul>
 				</div>
