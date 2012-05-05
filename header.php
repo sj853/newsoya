@@ -1,9 +1,11 @@
-<!doctype html>
-<html>
-<head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=<?php echo $config['site_charset']?>">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+<title><?php echo $siteTitle?></title>
 <meta name="keywords" content="<?php echo $config['site_keywords']?>">
 <meta name="description" content="<?php echo $siteContent?>">
-<title><?php echo $tempTitle?><?php echo $config['site_name']?> <?php echo $config['site_url']?></title>
-<link rel="shortcut icon" href="favicon.ico" />
+<link rel="shortcut icon" href="img/favicon.ico" />
+<link type="text/css" rel="stylesheet" href="css/common.css">
+<script src="js/common.js" type="text/javascript"></script>
 </head>

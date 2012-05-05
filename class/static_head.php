@@ -1,75 +1,75 @@
-<?
+<?php
 /*
-ÓÃ»§ÐèÒªÊÂÏÈ¶¨ÒåµÄ³£Á¿£º
-_htmlPath_Ä£°å¾²Ì¬Â·¾¶
-_htmlEnable_×Ô¶¯¾²Ì¬»úÖÆÊÇ·ñ¿ªÆô£¬Î´¶¨Òå»òÎª¿Õ£¬±íÊ¾¹Ø±Õ×Ô¶¯¾²Ì¬»úÖÆ
-_RehtmlTime_×Ô¶¯ÖØÐÂ¾²Ì¬¼ä¸ôÊ±¼ä£¬µ¥Î»ÎªÃë£¬Î´¶¨Òå»òÎª¿Õ£¬±íÊ¾¹Ø±Õ×Ô¶¯ÖØÐÂ¾²Ì¬
+ç”¨æˆ·éœ€è¦äº‹å…ˆå®šä¹‰çš„å¸¸é‡ï¼š
+_htmlPath_æ¨¡æ¿é™æ€è·¯å¾„
+_htmlEnable_è‡ªåŠ¨é™æ€æœºåˆ¶æ˜¯å¦å¼€å¯ï¼Œæœªå®šä¹‰æˆ–ä¸ºç©ºï¼Œè¡¨ç¤ºå…³é—­è‡ªåŠ¨é™æ€æœºåˆ¶
+_RehtmlTime_è‡ªåŠ¨é‡æ–°é™æ€é—´éš”æ—¶é—´ï¼Œå•ä½ä¸ºç§’ï¼Œæœªå®šä¹‰æˆ–ä¸ºç©ºï¼Œè¡¨ç¤ºå…³é—­è‡ªåŠ¨é‡æ–°é™æ€
 */
 class html{
     var$htmlfile;
     var$htmlfilevar;
     function html(){
-    //Éú³Éµ±Ç°Ò³µÄhtml×éÎÄ¼þÃû$this->htmlfilevar¼°ÎÄ¼þÃû$this->htmlfile
-    //¶¯Ì¬Ò³µÄ²ÎÊý²»Í¬¶ÔÓ¦µÄhtmlÎÄ¼þÒ²²»Í¬£¬µ«ÊÇÃ¿Ò»¸ö¶¯Ì¬Ò³µÄËùÓÐhtmlÎÄ¼þ¶¼ÓÐÏàÍ¬µÄÎÄ¼þÃû£¬Ö»ÊÇÀ©Õ¹Ãû²»Í¬
+    //ç”Ÿæˆå½“å‰é¡µçš„htmlç»„æ–‡ä»¶å$this->htmlfilevaråŠæ–‡ä»¶å$this->htmlfile
+    //åŠ¨æ€é¡µçš„å‚æ•°ä¸åŒå¯¹åº”çš„htmlæ–‡ä»¶ä¹Ÿä¸åŒï¼Œä½†æ˜¯æ¯ä¸€ä¸ªåŠ¨æ€é¡µçš„æ‰€æœ‰htmlæ–‡ä»¶éƒ½æœ‰ç›¸åŒçš„æ–‡ä»¶åï¼Œåªæ˜¯æ‰©å±•åä¸åŒ
         $s=array(".","/");$r=array("_","");
         $this->htmlfilevar=str_replace($s,$r,$_SERVER["SCRIPT_NAME"])."_".$_GET[_ActionVar_];
         $this->htmlfile=$this->htmlfilevar.".".md5($_SERVER["REQUEST_URI"]).".html";
     }
 
-    //É¾³ýµ±Ç°Ò³/Ä£¿éµÄ¾²Ì¬
+    //åˆ é™¤å½“å‰é¡µ/æ¨¡å—çš„é™æ€
     function delete(){
-        //É¾³ýµ±Ç°Ò³µÄ¾²Ì¬
+        //åˆ é™¤å½“å‰é¡µçš„é™æ€
         $d=dir(_htmlPath_);
         $strlen=strlen($this->htmlfilevar);
-        //·µ»Øµ±Ç°Ò³µÄËùÓÐhtmlÎÄ¼þ×é
+        //è¿”å›žå½“å‰é¡µçš„æ‰€æœ‰htmlæ–‡ä»¶ç»„
         while(false!==($entry=$d->read())){
             if(substr($entry,0,$strlen)==$this->htmlfilevar){
-            if(!unlink(_htmlPath_."/".$entry)){echo"htmlÄ¿Â¼ÎÞ·¨Ð´Èë";exit;}
+            if(!unlink(_htmlPath_."/".$entry)){echo"htmlç›®å½•æ— æ³•å†™å…¥";exit;}
             }
         }
     }
 
-    //ÅÐ¶ÏÊÇ·ñÒÑhtml¹ý£¬ÒÔ¼°ÊÇ·ñÐèÒªhtml
+    //åˆ¤æ–­æ˜¯å¦å·²htmlè¿‡ï¼Œä»¥åŠæ˜¯å¦éœ€è¦html
     function check(){
-        //Èç¹ûÉèÖÃÁË¾²Ì¬¸üÐÂ¼ä¸ôÊ±¼ä_RehtmlTime_
+        //å¦‚æžœè®¾ç½®äº†é™æ€æ›´æ–°é—´éš”æ—¶é—´_RehtmlTime_
         if(_RehtmlTime_+0>0){
-            //·µ»Øµ±Ç°Ò³htmlµÄ×îºó¸üÐÂÊ±¼ä
+            //è¿”å›žå½“å‰é¡µhtmlçš„æœ€åŽæ›´æ–°æ—¶é—´
             $var=@file(_htmlPath_."/".$this->htmlfilevar);$var=$var[0];
-            //Èç¹û¸üÐÂÊ±¼ä³¬³ö¸üÐÂ¼ä¸ôÊ±¼äÔòÉ¾³ýhtmlÎÄ¼þ
+            //å¦‚æžœæ›´æ–°æ—¶é—´è¶…å‡ºæ›´æ–°é—´éš”æ—¶é—´åˆ™åˆ é™¤htmlæ–‡ä»¶
             if(time()-$var>_RehtmlTime_){
                 $this->delete();$ischage=true;
             }
         }
 
-        //·µ»Øµ±Ç°Ò³µÄhtml
+        //è¿”å›žå½“å‰é¡µçš„html
         $file=_htmlPath_."/".$this->htmlfile;
-        //ÅÐ¶Ïµ±Ç°Ò³htmlÊÇ·ñ´æÔÚÇÒhtml¹¦ÄÜÊÇ·ñ¿ªÆô
+        //åˆ¤æ–­å½“å‰é¡µhtmlæ˜¯å¦å­˜åœ¨ä¸”htmlåŠŸèƒ½æ˜¯å¦å¼€å¯
         return (file_exists($file) and _htmlEnable_ and !$ischange);
 
     }
 
-    //¶ÁÈ¡html
+    //è¯»å–html
     function read(){
-        //·µ»Øµ±Ç°Ò³µÄhtml
+        //è¿”å›žå½“å‰é¡µçš„html
         $file=_htmlPath_."/".$this->htmlfile;
-        //¶ÁÈ¡htmlÎÄ¼þµÄÄÚÈÝ
+        //è¯»å–htmlæ–‡ä»¶çš„å†…å®¹
         if (_htmlEnable_) return readfile($file);
         elsereturnfalse;
     }
 
-    //Éú³Éhtml
+    //ç”Ÿæˆhtml
     function write($output){
-        //·µ»Øµ±Ç°Ò³µÄhtml
+        //è¿”å›žå½“å‰é¡µçš„html
         $file=_htmlPath_."/".$this->htmlfile;
-        //Èç¹ûhtml¹¦ÄÜ¿ªÆô
+        //å¦‚æžœhtmlåŠŸèƒ½å¼€å¯
         if(_htmlEnable_){
-            //°ÑÊä³öµÄÄÚÈÝÐ´ÈëhtmlÎÄ¼þ
+            //æŠŠè¾“å‡ºçš„å†…å®¹å†™å…¥htmlæ–‡ä»¶
             $fp=@fopen($file,'w');
             if(!@fputs($fp,$output)){echo"template html can not be writed - thrfou :static_head";exit;}
             @fclose($fp);
-            //Èç¹ûÉèÖÃÁË¾²Ì¬¸üÐÂ¼ä¸ôÊ±¼ä_RehtmlTime_
+            //å¦‚æžœè®¾ç½®äº†é™æ€æ›´æ–°é—´éš”æ—¶é—´_RehtmlTime_
             if(_RehtmlTime_+0>0){
-                //¸üÐÂµ±Ç°Ò³htmlµÄ×îºó¸üÐÂÊ±¼ä
+                //æ›´æ–°å½“å‰é¡µhtmlçš„æœ€åŽæ›´æ–°æ—¶é—´
                 $file=_htmlPath_."/".$this->htmlfilevar;
                 $fp=@fopen($file,'w');
                 if(!@fwrite($fp,time())){echo"template html can not be writed - thrfou :static_head";exit;}

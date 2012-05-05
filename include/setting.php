@@ -1,13 +1,13 @@
 <?php
 	$config = array(
 		"site_charset" => "utf-8",
-		"site_name" => "",
-		"site_url" => "",
-		"site_keywords" => "",
-		"site_content" => "",
+		"site_name" => "故事搜",
+		"site_url" => "so.story-ing.com",
+		"site_keywords" => "故事搜",
+		"site_content" => "故事搜",
 	);
 	
 	$filterwords = array(
-		"����΢��","�ٶ�֪��"
+		"新浪微博","百度知道"
 	);
 ?>
