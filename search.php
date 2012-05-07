@@ -1,5 +1,56 @@
 <?php
 	require ("include/head.php");
+	
+		$db = Database :: Connect();
+	$db ->setNamesGB2312();
+	
+	$aizhansql = "select id,keyword,hotval from keyword_task where type=4 and hotval=0 order by rand() limit 9";	 
+	$aizhanresult = $db->GetResultSet($aizhansql);
+	
+	$basesql = "select * from keyword_result where kid=";
+	
+    if(isset($_GET['id'])){
+	  $sql = $basesql.$_GET['id'];
+	  $keys = $db->GetSingleValOrDefault("select keyword from keyword_task where id={$_GET['id']}","");
+	}else{
+	$keys = trim($_GET['keys']);
+	if($keys == ""){
+		header("Location: index.php"); 
+		 
+		exit;
+		 
+	}
+		$sql = $basesql."(select id from keyword_task where keyword='$keys' limit 1)";
+	}
+	
+  
+	 
+	
+	 
+	if($db->GetCount($sql)<1){
+	 
+		
+		include_once ("./function/keywordresult.php");
+		
+		$content = getResultByBaiDu($keys);
+		
+		 $rs = getResultByBaiDu($keys,1);
+	 setCache('AA制生活',$rs,3);
+	print_r(getCache('AA制生活',3));
+			
+		 
+		 
+		}
+	else{
+		 
+		 
+		$result = $db->GetResultSet($sql);
+	
+		$row = mysql_fetch_array($result);
+	}
+	
+	
+		$db->Close();
 ?>
 
 <?php include "header.php"?>

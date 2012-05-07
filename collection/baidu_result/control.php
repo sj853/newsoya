@@ -22,12 +22,12 @@
 	 
 	 
 	if($state!=0){
-		echo "������....";
-		echo "<form method='post'><input type='hidden' name='run' value='0'/><input type='submit' value='ֹͣ'/></form>";
+		echo "运行中....";
+		echo "<form method='post'><input type='hidden' name='run' value='0'/><input type='submit' value='停止'/></form>";
 	}
 	else{
-		echo "��ֹͣ!";
-		echo "<a href='bd_search_task.php'>����</a>";
+		echo "已停止!";
+		echo "<a href='bd_search_task.php'>启动</a>";
 	}
 	
 	 

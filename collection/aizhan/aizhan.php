@@ -34,9 +34,9 @@
 		$keywords_array[$keyword] = 1 ;
 	}
 	
-			$db = Database::Connect();
+		 $db = Database::Connect();
 			 
-		$db->insert_keywords($keywords_array,4,'爱站关键字');
+		$db->insert_keywords($keywords_array,1,'爱站关键字');
 		
 		$db->Close();
 	 
