@@ -1,55 +1,46 @@
 <?php
 	require ("include/head.php");
 	
-		$db = Database :: Connect();
-	$db ->setNamesGB2312();
+	$db = Database :: Connect();
+	 
 	
-	$aizhansql = "select id,keyword,hotval from keyword_task where type=4 and hotval=0 order by rand() limit 9";	 
+	$aizhansql = "select id,keyword,hotlevel from kw_task where type=1 and hotlevel=1  order by rand() limit 9";	 
 	$aizhanresult = $db->GetResultSet($aizhansql);
 	
-	$basesql = "select * from keyword_result where kid=";
+	$basesql = "select isok from kw_task where id=";
 	
     if(isset($_GET['id'])){
 	  $sql = $basesql.$_GET['id'];
-	  $keys = $db->GetSingleValOrDefault("select keyword from keyword_task where id={$_GET['id']}","");
+	  $keys = $db->GetSingleValOrDefault("select keyword from kw_task where id={$_GET['id']}","");
 	}else{
-	$keys = trim($_GET['keys']);
+	$keys = trim($_GET['q']);
 	if($keys == ""){
 		header("Location: index.php"); 
 		 
 		exit;
 		 
 	}
-		$sql = $basesql."(select id from keyword_task where keyword='$keys' limit 1)";
+		$sql = $basesql."(select id from kw_task where keyword='$keys' limit 1)";
 	}
 	
   
 	 
 	
+	 include_once ("./function/keywordresult.php");
+	if($db->GetSingleValOrDefault($sql,0)==0){
+	    
+		 if(shuffleResult($keys)>0){
+		 
+					$sql = "insert into kw_task(keyword,type,type_desc,hotlevel,time) values('$keys',0,'用户查询',1,now())";
+					$db->Execute($sql);
+					 
+				}
+	  
+		}	 	 
+		 
+		$result = getCache($keys);
 	 
-	if($db->GetCount($sql)<1){
-	 
-		
-		include_once ("./function/keywordresult.php");
-		
-		$content = getResultByBaiDu($keys);
-		
-		 $rs = getResultByBaiDu($keys,1);
-	 setCache('AA制生活',$rs,3);
-	print_r(getCache('AA制生活',3));
-			
-		 
-		 
-		}
-	else{
-		 
-		 
-		$result = $db->GetResultSet($sql);
-	
-		$row = mysql_fetch_array($result);
-	}
-	
-	
+ 
 		$db->Close();
 ?>
 
@@ -185,6 +176,15 @@ if( !(/\((iPhone|iPad|iPod)/i.test(navigator.userAgent)) ){
 					<p class="fgray">频道：<a _order="1" _log="result" href="http://news.sina.com.cn/" target="_blank" class="fblue">新闻</a>&nbsp;&nbsp;来源：荆楚网-楚天金报</p>
 												</div>
 			</div>
+			<?php foreach($result as $rs) {?>
+			<div class="box-result clearfix">
+				<div class="r-info r-info2">
+					<h2><a _order="1" _log="result" href="<?php echo 'jump.php?to='.base64_encode($rs[1])?>" target="_blank"><?php echo $rs[3]?></a> <span class="fgreen time">2012-04-18 10:25:31</span></h2>
+					<p class="content"><?php echo $rs[2]?></p>
+					<p class="fgray"><?php echo $rs[1]?></p>
+												</div>
+			</div>
+			<?php }?>
 			<!-- 文字新闻spider end -->
 						
  

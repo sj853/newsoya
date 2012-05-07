@@ -1,49 +1,51 @@
  <?php	
 
-	//require_once ("configure.php");
-	
-	//require_once ("database.php");
+ 
 
-include_once ('include.php');
+	include_once ('include.php');	 
 	include_once ("data_cache.php");
 	
-	 $rs = getResultByBaiDu('AA制生活',3);
-	 setCache('AA制生活',$rs,3);
-	print_r(getCache('AA制生活',3));
 	
-	
-	function insertKeyResults() {
-			   
+ 
+	 
+	 function insertKeyResults() {
 
-		$db = Database :: Connect();
+			$db = Database :: Connect();
 
-		$sql = "select id,keyword from kw_task where id in (select kid from kw_result where content='') order by time desc,hotval desc limit 1";
+			$sql = "select id,keyword from kw_task where isok=0 order by time desc,hotval desc";
 
-		$rs = $db->GetResultSet($sql);
-		 
-		while ($row = mysql_fetch_array($rs)) {
-
-			$keys = $row['keyword'];
-			$kid = $row['id'];
-
-			$content = getResultByBaiDu($keys);
+			$rs = $db->GetResultSet($sql);
 			
-			$desc = match('#<font size=-1>([^$]+)<br>#U',$content[3]);
+			while ($row = mysql_fetch_array($rs)) {
+
+				$keys = $row['keyword'];
+				$kid = $row['id'];
+
+				if(shuffleResult($keys)>0){
+					$sql = "update kw_task set isok=1 where id=".$rs['id'];
+					$db->Execute($sql);
+					 
+				}
+				 
+			}
 			
-			$content = implode($content);
-			
-			$likes = getOtherKeys();
-			
-			//$db->insert_keywords_result($kid, addslashes(htmlspecialchars($content)),addslashes(htmlspecialchars($likes)),strip_tags($desc));
-			 
+			$db->Close();
 
 		}
-		$db->Close();
-
+	
+	function shuffleResult($keys){
+		 $rs = getResultByBaiDu($keys,1);
+		 $rs2 = getResultByBaiDu($keys,2);
+		 $result['title'] = array_merge($rs[3],$rs2[3]);
+		 $result['content'] = array_merge($rs[2],$rs2[2]);
+		 $result['url'] = array_merge($rs[1],$rs2[1]);
+		 $result['likes'] = getRelatedResultByBaiDu($keys);
+		 shuffle($result);
+		 return setCache($keys,$result);
 	}
 	
 	function getRelatedResultByBaiDu($keys){
-		$con = getBaiduHtml($keys,$page);
+		$con = getBaiduHtml($keys);
 		$kwLike = match('#<div id="rs">([^$]+)</div>#U',$con);
 		$likes = match_all('#<a[^$]+>([^$]+)</a>#U',$kwLike);
 		return $likes;
