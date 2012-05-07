@@ -1,0 +1,746 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+<title>故事搜</title>
+<meta name="keywords" content="故事搜">
+<meta name="description" content="故事搜">
+<style type="text/css">
+/* 通用 */
+html, body, ul, li, ol , dl , dd , dt , p, h1, h2, h3, h4, h5, h6, form, fieldset, legend , table, td, img {margin: 0;padding: 0;}
+input,select,textarea{margin:0;}
+fieldset,img{border:none;}
+address,caption,cite,code,dfn,em,th,var {font-style: normal;font-weight: normal;}
+ul,ol{list-style-type:none;}
+select,input{vertical-align:middle;}
+select,input,textarea {font-size:12px;}
+body {background:#fff;color:#333;font:12px/1.67em "宋体"; }
+.clearfix:after{content:"."; display:block; height:0; visibility:hidden;clear:both;}
+.clearfix{zoom:1;}
+.clearit{clear:both;height:0px;overflow:hidden;  }
+.lh20{line-height:20px; }
+.lh23{line-height:23px; }
+.sp10{height:10px;overflow:hidden;}
+
+.f12 {font-size:12px;}
+.f14 {font-size:14px;}
+.fB{font-weight:bold;}
+.fwhite,a.fwhite{color:#fff;}
+
+.fblack{color:#000;}
+.fred{color:#c00;}
+.fgreen{color:#009900;font-size:12px;}
+a.fnoL{text-decoration:none;}
+a.fnoL:hover{text-decoration:underline;}
+.fB{font-weight:bold;}
+.fgray{color:#999;}
+.space{height:10px;background:#fff;overflow:hidden;clear:both;}
+
+/* liuxiaolong added @ 2011.12.16 */
+.fblue {color:#000099;}
+.wbret-wrap { margin-top:10px; margin-bottom:19px; width:538px; display:block; padding:10px 15px; background-color:#f2f6f9; border-bottom:1px dashed #c3d0ed; }
+a.wbret-wrap, a.wbret-wrap:link, a.wbret-wrap:visited, a.wbret-wrap:active, a.wbret-wrap:hover, a.wbret-wrap:focus { text-decoration:none; }
+.wbret-tt { display:block; padding:0 0 0 20px; background:url(images/swb_01.png) 0 0 no-repeat; }
+.wbret-tt span { text-decoration:none; font-size:14px; }
+.wbret-p1 { display:block; padding:10px 0 5px 0; border-bottom:1px dotted #ccc; font-size:12px; color:#333; }
+.wbret-date1 { display:block; color:#999; }
+.wbret-p2 { display:block; padding:5px 0 5px 0; font-size:12px; color:#333;}
+.wbret-link1 { padding:0; color:#000099; }
+a.wbret-link1:link, a.wbret-link1:visited { color:#00099; text-decoration:none; }
+a.wbret-link1:active, a.wbret-link1:hover, a.wbret-link1:focus { text-decoration:underline; }
+.wbret-p3 { display:block; padding:0; font-size:12px; }
+.wblink { color:#26A2DA; }
+
+a {color:#000099;text-decoration:none;}
+a:hover{color: #f00;text-decoration:underline;}
+
+.tac{text-align:center; }
+.tar{text-align:right; }
+.pad10{padding:10px;}
+
+.wrap{width:950px;margin:0 auto; }
+/*弹出层专用*/
+a.fred{color:#c00;}
+.layer-frame { border:0; position:absolute; filter: alpha(opacity=0);}
+.l{float:left; }
+.r{float:right; }
+.r a{margin-left:10px; }
+.r a.style_a{margin-left:0px; }
+.r .style_box{border-right:dotted 1px #ccc;margin-right:5px;padding-right:10px}
+.r .style_cion{margin-left:0}
+.top{overflow:hidden; position:relative;line-height:30px;padding:0 10px 0 5px;background:#8697D9;}
+.top .l a { float:left; display:inline; margin:0 5px; outline:0 }
+/*
+.top a{text-decoration:none;color:#EDF0F9;}
+.top a:hover{color:#fff;}
+.top .l a.selected{background:url(http://www.sinaimg.cn/dy/search/images/sub_nav_cur.png) center 100% no-repeat;color:#fff;}
+*/
+.top a:link,.top a:visited { text-decoration:none; color:#fff; }
+.top a:hover{ color:#FFFF99; }  
+.top .l a.selected { background:url(http://www.sinaimg.cn/dy/search/images/sub_nav_cur.png) center 100% no-repeat; color:#FFFF99; }
+
+.top a:hover,.top a:active,.top a:focus { text-decoration:none;}
+
+
+.top2{position: relative;z-index:100;background:url(http://www.sinaimg.cn/dy/search/images/top2_bg.png) repeat-x;height:95px;}/*2010/11/3*/
+.top2 h1{padding:17px 0 0 20px;}
+.search-form{padding:32px 0 0 11px;zoom:1;}
+.search-form a:hover,.search-form a:focus { text-decoration:none;}
+.ipt-02{border:1px solid #667BCE;padding:2px;line-height:20px; height:20px;font-size:14px;width:292px;margin:0 -1px 0 0;}
+
+input.ipt-03 { background:url(http://www.sinaimg.cn/dy/search/images/sub_btn.png); width:70px; height:26px; border:none; color:#fff; margin:0 3px 0 0;cursor:pointer;outline:none 0}
+input.ipt-03:hover,input.ipt-03.hover{background-image:url(http://www.sinaimg.cn/dy/search/images/btn_hover.png);}
+input.ipt-03:focus,input.ipt-03:active{outline:none 0;border:none}
+input.ipt-03::-moz-focus-inner { border: 0; }
+/*2010/11/12*/
+input.ipt-03b{background-image:url(http://www.sinaimg.cn/book/search/sub_btn2.png);width: 84px;}
+input.ipt-03b:hover,input.hoverb{background:url(http://www.sinaimg.cn/book/search/sub_btn2.png) 0 -30px no-repeat;}
+
+/* 在结果中搜索*/
+.ipt-04 { background:url(http://www.sinaimg.cn/dy/search/images/searchin_btn.png); width:90px; height:26px; border:none; color:#fff; margin:0 3px 0 0; }
+
+.search-form p{padding:5px 0 0 0 ;}
+.search-form p label input { margin:-3px 3px 0 0; }
+.search-form p label{margin:0 1.5em 0 0; }
+
+/* 高级搜索 by liusong */
+.adv_search{padding:10px 20px}
+.adv_search table { width:100%; margin:20px auto; border-collapse:collapse; border-spacing:0 }
+.adv_search th, .adv_search td { border:dashed 1px #E4E9FA; border-width:1px 0; padding:10px }
+.adv_search th { text-align:right; font-size:14px; width:160px; padding-right:15px}
+.adv_search td p{ padding-bottom:10px}
+.adv_search .btns{ text-align:center; border-width:0; padding:20px }
+.adv_search .btns input{ font-size:14px}
+.adv_search label{ margin-right:2em; vertical-align:middle}
+.adv_search .inp_txt{border:solid 1px #9EB5E4; width:170px; padding:3px 4px}
+.date_pick .inp_txt{ width:90px; background:url(http://www.sinaimg.cn/dy/search/images/ss_cl_011.png) no-repeat 95% center;cursor:pointer; }
+.data-select { background:url(http://www.sinaimg.cn/dy/search/images/ss_cl_011.png) no-repeat 95% center; border:1px solid #8fcee0; padding:2px; height:14px; line-height:14px; width:80px; cursor:pointer; }
+.adv_search select{ width:95px; margin-right:16px}
+
+.sec_tit h2{font-weight:bold; margin:-10px 0 0px; font-family:"微软雅黑","黑体"; font-size:18px}
+
+.nav {background:#ECEDF9; line-height:30px;padding:0 10px;color:#666; }
+.nav .r{color:#787878; position:relative}
+.nav .r strong{font-weight:normal;/*color:#000*/;zoom:1}
+.nav a:hover,.nav a:focus{ text-decoration:none;}
+
+.nav2{background:#eef7f9;margin-top:1px; line-height:30px;padding:0 10px; }
+.nav2 .l{border-right:1px solid #cfe9ef;width:150px; }
+.nav2 .r{line-height:normal;height:22px; padding:6px 0 0 0 ; }
+.main { border-bottom:1px solid #C8D5F0; cursor:default;}
+.main .l { width:140px; cursor:auto;}
+.main .l dl { padding:23px 0 0 15px; }
+.main .l dt{padding:0 0 0 7px;}
+.main .l li{padding-left:7px;}
+.main .l li.selected {background:url(http://www.sinaimg.cn/dy/search/images/ss_cl_009.png) no-repeat 0 center; color:#c00; }
+.main .l li.selected a{text-decoration:none; color:#c00;}
+
+.main .l li span{font-family:arial;font-size:11px;}
+.main .l li span a {color:#090;}
+.main .l li.limore{position:relative; padding-left:0px;}
+.main .l li.limore div.more-link div {padding-left:7px;}
+.main .l li.limore .more-link a{height:20px;line-height:20px; }
+.main .l li a.a_num {color:#090; text-decoration:none;}
+.main .l li a.a_num:hover,
+.main .l li a.a_num:active,
+.main .l li a.a_num:focus {color: #f00;text-decoration:none;}
+
+.main .result { float:left;border-left:1px solid #C8D5F0; padding:10px 0px 10px 10px; width:549px; zoom:1; cursor:auto; position:relative;}
+.main .zcad {float:left;width:210px;float:right;   }
+.foot{text-align:center; margin:10px 0; color:#666;}
+.foot a:hover,.foot a:focus{ text-decoration:none;}
+a.amore{background:url(http://www.sinaimg.cn/dy/search/images/ss_cl_007.png) no-repeat 100% -88px; padding-right:15px; }
+a.amore2{background:url(http://www.sinaimg.cn/dy/search/images/ss_cl_007.png) no-repeat 100% -49px; padding-right:15px; }
+
+.list-more{position:absolute;left:5px;top:18px;width:95px; z-index:10000;}
+.list-more .more-arr{background: url(http://www.sinaimg.cn/dy/search/images/sea_m_arr.png) no-repeat 10px 0;height:5px;overflow:hidden;  position:relative;margin-bottom:-1px;zoom:1 }
+.ipt-01{border:1px solid #60a9cc;padding:3px;line-height:20px;height:20px; width:426px; margin:0;float:left; font-size:14px;outline:none}
+.more-link{border:1px solid #687DCE;background:#fff; padding:3px 0 0 0;}
+.more-link a{display:block;margin:1px;line-height:24px;padding:0 0 0 13px;text-decoration:none;background:#fff;zoom:1;height:24px;overflow:hidden;  }
+.more-link a:hover{background-color:#ECEEF9;text-decoration:none; color:#000099; }
+.more-link .line-dot{background:url(http://www.sinaimg.cn/dy/search/images/ss_cl_004.png) repeat-x;}
+.data-select{background:url(http://www.sinaimg.cn/dy/search/images/ss_cl_011.png) no-repeat 95% center;border:1px solid #8fcee0;padding:2px;height:14px;line-height:14px;width:80px; cursor:pointer;  }
+.box-define{padding:0 0 0 7px;}
+.box-define p{padding:2px 0;}
+a.areset{background:url(http://www.sinaimg.cn/dy/search/images/ss_cl_012.png) no-repeat 0 center;padding:0 0 0 15px; }
+a.back { background:url(http://www.sinaimg.cn/dy/search/images/back.png) no-repeat 0 center; padding:0 0 0 12px; margin:0 0 0 -10px; }
+
+/* 内容顶部提示区域 mod_bar */
+.mod_bar { zoom:1; overflow:hidden; padding:0 0 5px; width:559px; margin-left:10px;}
+/* 排序方式 */
+.sort_option { float: right;margin:0 ;width:160px; height:25px; line-height:25px; text-align:center;}/*2010/10/26*/
+.sort_option_product { margin:0 ; display:block; width:540px; text-align:right; height:25px; line-height:25px; z-index:9999;}
+.result .sort_option a{margin-left:0px; text-decoration:none;}
+.result .sort_option_product a{text-decoration:none;}
+
+.cur_sort{ color:#000;padding-bottom:5px;background:url(http://www.sinaimg.cn/dy/search/images/arr.png) no-repeat 50% 100%;/*margin-left:10px;*/ }/* modified by  youhuata 0415 */
+/* added by youhuata 100325 */
+
+/* 按时间排序提示信息 */
+.tips_01{position: relative;height:30px;line-height: 30px;margin: 0 0 5px;padding:0 10px;background: #f3f5fc;border: 1px solid #c6d2ff;color: #000;}
+.tips_01 p em{color: #f00;}
+.tips_01 .close{color:#959ebe; position: absolute;right:6px;top:6px;line-height: 14px;font-family: arial;cursor: pointer;}
+				
+#sidebtn{background:url(http://www.sinaimg.cn/dy/search/images/side_arr.png) no-repeat 0 0;display:block; position:absolute; width:11px;height:30px;overflow:hidden;text-indent:-999em;margin:0 0 0 -21px;padding:0;outline:none;}
+a#sidebtn.sideclose{background-position:100% 0;margin-left:-10px; }
+a.sideopen{}
+#sidebtn:hover{background-position:0 -30px; }
+a#sidebtn.sideclose:hover{background-position:100% 100%;}
+
+.result h2{line-height:24px; }
+.box-result { width: 549px;margin:5px 0 19px; zoom:1;padding: 5px 9px;border: 1px solid #fff;}/*2010/11/22*/
+.box-result .r-img{float:left; width:140px; position:relative;}
+.box-result .r-img .video{position:absolute;left:5px;bottom:5px;*bottom:9px;border:none;}
+a.a-img img{border:1px solid #ccc;padding:1px;}
+a.a-img:hover img{border-color:#69c;}
+.box-result .r-info{float:left;width:409px;/* overflow:hidden;*/ }
+.box-result .r-info p{word-wrap:break-word;word-break:break-all;} 
+
+.box-result .r-info p .col3{display:inline-block;width:22%;overflow:hidden; height:16px;}
+.box-result .r-info p .update{width:45%}
+/*新添co3 by youhua 2010-8-20,modify width by Han 8-23 */
+.box-result .r-info2{float:none;width:auto;  }
+.box-result h2{font:normal normal normal 14px/1.67em "宋体"; }
+.box-result h2 .fgreen { font-size:12px;}
+a strong.highlight, a:link strong.highlight, a:visited strong.highlight, .highlight { color:#c00; font-weight:normal; }
+a strong.highlight { text-decoration:underline }
+.box-result .fblue{color:#6699cc;text-decoration:none; }
+/*.box-result .r-info h2 a {padding-right:10px;}*/
+.acmt{background:url(http://www.sinaimg.cn/dy/search/images/ss_cl_014.png) no-repeat 0 center;padding-left:12px; }
+.box-result a:visited{color:#800080;}
+.box-result a.fblue:visited{color:#6699cc;}
+.box-result a.fblue:hover,.box-result a.fblue:focus{color:#f00;text-decoration:none; }
+.box-result .time {white-space:nowrap;}
+.box-result span.zts {white-space:nowrap;}
+img.noimg{vertical-align:middle;margin:0 2px;}
+.list-img{overflow:hidden; zoom:1;padding:5px 0 0 0; height:94px;}
+.list-img li{float:left; margin:0 5px 0 0 ;display:inline;}
+.list-img li img{display:block; margin:0 auto;float:left; }
+.list-img li.lastall {border:none;width:auto;padding:78px 0 0 15px; }
+
+.result .hover{background: #F3F7FA;border-color: #E0EBF1}/*2010/11/22*/
+
+/* 分页 */
+
+.pagebox {font-size:12px; margin-bottom:10px;}
+.pagebox a, .pagebox a:visited,  .pagebox a:link{border:1px solid #ddd;color:#69c;cursor:pointer;height:21px;line-height:21px;padding:0 8px;text-decoration:none;display:inline-block;overflow:hidden; margin-right:4px;}
+.pagebox a:hover {background:#F1F2FA; text-decoration:none;}
+.pagebox span.pagebox_cur_page {background:#687CCE none repeat scroll 0 0;color:#FFFFFF;cursor:default;font-weight:bold;height:23px;line-height:23px;padding:0 8px;display:inline-block;overflow:hidden; margin-right:4px;}
+
+
+/*直达区公用css*/
+.box-nav {background:#F3F7FA url(http://www.sinaimg.cn/dy/search/images/dot_line.png) repeat-x 0 100%; padding:10px; margin-bottom:25px;}
+
+/*股票*/
+.box-finance {/*padding-left:15px;*/ }
+.box-finance .r-img{width:auto;margin:2px 5px 0 0; }
+.box-finance .r-info { width:auto; padding-left:15px;}
+.box-finance h2 { padding: 0 0 10px 0; }
+.box-finance .r-num {font-family:arial;padding:0px 0 7px;zoom:1;}
+.box-finance .r-num:after { content:"."; display:block; height:0; visibility:hidden; clear:both; }
+.box-finance .r-num h3 { font-size:24px; font-weight:normal; line-height:1.0; padding:4px 14px 2px 0;float:left;margin:0 10px 0 0;border-right:1px solid #999;}
+.fgreen { color:#090; }
+.box-finance .r-num p{line-height:14px; white-space:nowrap;}
+.box-finance .r-num .num_detail{float:left;padding:2px 0 2px 14px;}
+.box-finance .r-data {padding:4px 1em 2px 2px; border-top:1px solid #999999;clear:both;_float:left;}
+.f_table { border-spacing:0; border-collapse:collapse; }
+.f_table th, .f_table td { padding-right:10px; text-align:left }
+.f_table td { padding-left:2px }
+/* end of 股票 */
+
+/*天气*/
+.box-weather {/*padding-left:10px;*/}
+.box-weather h2{padding:0 0 8px 0;}
+.box-weather .w-cnt{overflow:hidden; zoom:1;margin:0 0 0 0; }
+.box-weather .w-icon{vertical-align:middle;}
+.box-weather dl{float:left;width:174px;padding:0 0 0 0px;border-right:1px dotted #ccc; margin-right:15px;}
+.box-weather dl.last { border:none; margin-right:-25px; }
+.box-weather dd p{line-height:normal; padding:3px 0 ;}
+
+/* 大片 */
+/* 视频 */
+.nav_16 .r-info h2 .hd{ background: url(http://www.sinaimg.cn/dy/search/images/hd.png) repeat-x; border:solid 1px #9FB6E4; color:#8697D9; padding:3px 6px}
+.nav_16 .hd a{ color:color:#8697D9; text-decoration:none}
+.nav_16 .blue {color:#6699cc;}
+
+
+/*积分榜*/
+.box-socre h2{padding:0 0 5px 0;}
+.tbl-score { border-collapse:collapse; border:1px solid #CFE9EF; line-height:24px; font-family:arial; margin:5px 0; }
+.tbl-score th { background:#F1F4FC; padding-left:12px; text-align:left; border-right:1px solid #fff; }
+.tbl-score td { padding-left:12px; border-bottom:1px solid #CFE9EF; }
+.tbl-score td.tar { font-family:"宋体"; padding:0 1em 0 0; }
+.more-keyword{font:normal normal normal 14px/1.67em "宋体";padding:10px; }
+.more-keyword td { padding:0 0 0 3px; line-height:26px; text-align:center; }
+.more-keyword td.item { padding: 0 25px; text-align:left;}
+.search-form-bot{background:#EBEDFA;padding:10px 20px 20px;}
+.search-form-bot form { /*width:530px;*/ width:400px; margin:0 auto; }
+.sidebar { width:130px;padding-right:10px; }
+.more-keyword a,.result a{text-decoration:none; }
+.from{color:#666;padding:10px 0 15px; }
+.from strong{font-weight:normal;color:#000}
+.from strong a{text-decoration:none;color:#000; }
+/*隔行换色*/
+.zebra { background:#F3F7FA; padding:10px; }/* modified by  youhuata 0415 */
+.zebra .r-info{ width:389px; }/* added by youhuata 0415 */
+.zebra .r-info2{float:none;width:auto;  }
+
+/* 切换显示方式图标 */
+.view_icon { width:18px; height:15px; vertical-align:-10%; background:url(http://www.sinaimg.cn/dy/search/images/thumbs.png) no-repeat 0 0; }
+#thumb { background-position: 0 0 }
+#list { background-position:100% 0 }
+#thumb.on { background-position: 0 100% }
+#list.on { background-position:100% 100% }
+/* 产品库 */
+.box-prd { padding:10px; margin-bottom:15px }
+.box-prd h2 { margin-top:-3px }
+.box-prd .r-img { width:102px; text-align:center; vertical-align:middle; height:102px; line-height:102px; border:solid 1px #ccc; background:#fff; position:relative; overflow:hidden; zoom:1;display:table;}
+.box-prd .r-img a { position:static; +position:absolute;
+top:50%; vertical-align:middle; display:table-cell; _display:inline; zoom:1; _blr:expression(this.onFocus=this.blur());outline-style:none;}
+/*.box-prd .r-img a:after { content:" "; font-size:1px; visibility:hidden }*/
+.box-prd .r-img a img { border:none; padding:0; vertical-align:middle; position:static; +position:relative;
+top:-50%; left:-50%; max-height:98px; max-width:98px;}
+.box-prd .r-info { float:none; margin-left:124px; width:auto;zoom:1 }
+.box-prd h3 { font-weight:normal; text-align:right; margin:-23px 0 0; font-size:12px }
+.box-prd h3 .price { color:#c00; font-family:Arial, Helvetica, sans-serif; font-size:16px; font-weight:normal;line-height:28px; }
+.box-prd h3 .noprice { line-height:28px;}
+
+/* 产品库 > 软件 */
+.box-software .r-img { width:44px; height:44px }
+.box-software .r-img a { width:42px; height:42px; line-height:42px }
+.box-software .r-img a img { margin-top:6px }
+.box-software .r-info { margin-left:60px }
+/* 大图显示 */
+.dN { display:none }
+.thumbnail {font-size:12px;overflow:hidden; height:16px;}
+.thumbnail_view .box-prd { float:left; width:181px; padding:0; vertical-align:top }
+.thumbnail_view .r-img { float:none; width:142px; height:142px; line-height:142px }
+.thumbnail_view .r-img img { max-height:140px; max-width:140px; /*  此处有CSS控制图片宽高，如输出时控制过图片尺寸，则可以注释掉中部分 */  _height:expression(this.scrollHeight>139?"140px":"auto");
+_width:expression(this.scrollWidth>139?"140px":"auto");
+/*  此处有CSS控制图片宽高，如输出时控制过图片尺寸，则可以注释掉中部分 IE6 专用 */
+	}
+.thumbnail_view .r-info { margin-left:0; padding:10px 0 0 0 ; zoom:1}
+.thumbnail_view .r-info h3 { text-align:left; margin:0 }
+.thumbnail_view .r-info p.content { display:none }
+/* .thumbnail_view .r-info p span, .thumbnail_view .r-info h3 span { display:none } */
+.thumbnail_view .r-info p .thumbnail { display:block }
+.thumbnail_view .r-info p .thumbnail { display:block;width:auto }/* modified by youhua 2010-8-20 */
+
+/* 微博相关 */
+.small_icon { background:url(http://simg.sinajs.cn/miniblog2style/images/common/sicon.gif) no-repeat 0 0; overflow:hidden; }
+.male, .man { background-position:0 -20px; width:9px; height:12px; }
+.female, .sicon_female { width:9px; height:12px; background-position:0 0; }
+.vip { background-position:-32px -20px; width:11px; height:10px; }
+/* 直通车 */
+.box-map .r-img { width:250px }
+.box-map .r-info { width:auto; margin-left:250px; float:none }
+/*日期选择*/
+#ui-datepicker-div{margin-top:5px;margin-left:-10px;/* 修正偏差 */margin-bottom:20px;font-size:12px;font-family:Arial, Helvetica, sans-serif;background:#fff;display:none;border:1px #9ca9cb solid;width:244px;padding:3px;color:#434343;overflow:hidden;z-index:99}
+#ui-datepicker-div select{height:21px;color:#434343;cursor:pointer}
+.ui-datepicker-header{width:244px;height:25px;border-bottom:1px #fff solid;overflow:hidden;background:url(http://i3.sinaimg.cn/dy/home/090605/bg_news.png) no-repeat 0 0;position:relative}
+.ui-datepicker-header a.ui-state-disabled,.ui-datepicker-header a.ui-state-disabled:visited{background:#d8ebfe;cursor:default}
+.ui-datepicker-prev{width:30px;height:21px;overflow:hidden;cursor:pointer;position:absolute;top:2px;left:4px;display:block}
+.ui-datepicker-next{width:30px;height:21px;overflow:hidden;cursor:pointer;position:absolute;top:2px;right:5px;display:block}
+.ui-datepicker-title{text-align:center;width:175px;height:21px;position:absolute;top:2px;left:34px}
+.ui-datepicker-year,.ui-datepicker-month{width:60px}
+.ui-datepicker-calendar{width:245px;border-collapse:collapse;border-left:1px #fff solid}
+.ui-datepicker-calendar th,.ui-datepicker-calendar td{padding:0;background:#efefef;color:#686868;border-right:1px #fff solid;border-bottom:1px #fff solid;line-height:22px;text-align:center;cursor:default;font-weight:400}
+.ui-datepicker-calendar th{/* 表头样式在此 */background:#e9e9e9}
+.ui-datepicker-calendar th span{display:block}
+.ui-datepicker-calendar th.ui-datepicker-week-end,.ui-datepicker-calendar td.ui-datepicker-week-end{/* 周末单元格样式在此 */}
+.ui-datepicker-calendar td{font-size:10px}
+.ui-datepicker-calendar td.ui-state-disabled{color:#aaa}
+.ui-datepicker-calendar td a,.ui-datepicker-calendar td a:visited{display:block;cursor:pointer;color:#686868;text-decoration:none;text-align:center;border:1px #efefef solid;line-height:20px;height:/* IE6在a的display为block时，必须设置height或width中的一个才能正确触发hover伪类 */20px}
+.ui-datepicker-calendar td a:hover,.ui-datepicker-calendar td a:active,.ui-datepicker-calendar td a:focus{background:#ec6e6b;color:#fff;border:1px #a40300 solid}
+.ui-datepicker-calendar td a.ui-state-active,.ui-datepicker-calendar td a.ui-state-active:visited{/* .ui-state-active必须在.ui-state-highlight之前，此样式用于标注指定的但不是今天的日期 */background:#fff;border-color:#efefef}
+.ui-datepicker-calendar td a.ui-state-active:hover,.ui-datepicker-calendar td a.ui-state-active:active,.ui-datepicker-calendar td a.ui-state-active:focus{color:#ca0e0a;text-decoration:underline;background:#fff;border-color:#efefef}
+.ui-datepicker-calendar td a.ui-state-highlight,.ui-datepicker-calendar td a.ui-state-highlight:visited{background:#ca0e0a;color:#fff;border:1px #a40300 solid}
+.ui-datepicker-calendar td a.ui-state-highlight:hover,.ui-datepicker-calendar td a.ui-state-highlight:active,.ui-datepicker-calendar td a.ui-state-highlight:focus{background:#ca0e0a;color:#ff0;text-decoration:underline;border:1px #a40300 solid}
+.ui-icon,.ui-datepicker-cover,.ui-datepicker-trigger{display:none}
+.pagenum{font-size:11px;font-family:verdana;}
+
+.noresult {margin-left:25px; clear:left; font-size:14px; padding-bottom:100px; }
+.noresult h4{ font-weight:normal; font-size:14px; line-height:30px; }
+.noresult h4 span{color:#cc0033;}
+.noresult p { font-size:14px; line-height:50px;}
+.noresult ul{}
+.noresult ul li{font-size:14px; line-height:20px; margin-left:30px; list-style-type:disc;}
+
+.more_switch {text-align:right; padding-right:29px;}
+.more_switch a.amore,.more_switch a.amore2{background-image:url(http://www.sinaimg.cn/dy/search/images/sw.png); outline:none 0; text-decoration:none; }
+
+span.style1 { color:#f00; }
+/**/
+.gray_lv2{ color:#666}
+.cur_area{ margin:0 0 5px}
+.notice{ background:url(http://www.sinaimg.cn/dy/search/images/notice.gif) no-repeat 0 50%; padding:2px 2px 2px 15px; }
+
+/* 在结果中搜 */
+#search_more{padding:0 20px; font-size:14px; height:300px; position:relative; z-index:2}
+#search_more h2{font-weight:bold; margin:-10px 0 18px; font-family:"微软雅黑","黑体"; font-size:18px; position:relative; z-index:20}
+#search_more p{line-height:157%}
+
+.main .l li .type-more li{ padding-left:7px;}/* added by youhuata 2010-03-26  16:33 */
+.type-more{zoom:1; overflow:hidden}
+
+/* range radio add pointer */
+label.label_range { cursor:pointer;}
+label.label_range input { cursor:pointer;}
+
+/* world cup 2010 */
+/* added by youhuata 100602 */
+.WorldCupTop{ height:95px!important}
+.w_c_p{ background: url(http://www.sinaimg.cn/dy/search/images/sjb_banner.png) no-repeat 100% 100%; height:95px}
+.world_cup_filter{ position:absolute; margin:0;color:#cc0000;}
+.world_cup_filter a{color:#00f;text-decoration:none}
+.world_cup_filter a:hover { color:#f00; text-decoration:none;}
+.main .l li span{color:#009900}
+
+/* 新闻搜索下筛选器 世界杯标注特殊颜色 */
+.sidebar li.wc2010_a a {color:#f60;}
+.sidebar li.wc2010_a a:hover {color:#f00;}
+
+/* 图片搜索 按效果高清标识 */
+img.size_hd{ /*vertical-align:text-top;*/ margin-left:2px;}
+/*去掉hover 下划线*/
+.sidebar a:hover,.sidebar a:focus { text-decoration:none;}
+
+/* 左侧筛选器指定日期范围 */
+.cdatehost{ text-align:right; }
+.cdatehost p { padding:2px 0 0 0;}
+.cdatehost .btns{ text-align:center; border-width:0; padding:20px }
+.cdatehost .btns input{ font-size:14px}
+.cdatehost label{ margin-right:2em; vertical-align:middle}
+.cdatehost .inp_txt{border:solid 1px #9EB5E4; width:80px; padding:3px 4px}
+.cdatehost select{ width:90px; margin-right:16px}
+
+/*2010/11/3begin*/
+.mod_thumb{float: left;width: 140px;text-align: center;}
+.mod_thumb table{margin: auto;text-align: center;}
+.mod_thumb .video{text-align: left;}
+.mod_thumb .video a{position: relative;display: block;margin: -25px 0 0 5px;}
+.mod_thumb .btn_play{display: inline-block;width: 73px;height: 25px;background: url(http://www.sinaimg.cn/dy/search/images/search_btn_play.png) 0 0 no-repeat;}
+#search_ft_02{display: none;}
+
+.dropselectbox {display:inline;}
+.dropdown {outline:none;display:inline-block;vertical-align: middle;*display:inline; zoom:1; background:#dee3fa; }
+.dropdown * {-moz-user-select:none;}
+.dropdown h4{cursor:pointer; text-indent:5px;height:24px; padding-right: 5px;font:12px/24px '宋体', sans-serif; border:solid 1px #667bce;background:url(http://www.sinaimg.cn/dy/search/images/search_slt_arr.png) no-repeat right center;}/*2010/11/30*/
+.dropdown h4.over{border-color:#667bce; background-image:url(http://www.sinaimg.cn/dy/search/images/search_slt_arr.png);}
+.dropdown h4.current{border-color:#667bce;}
+.dropdown div {display:block; /*fix bug*/}
+.dropdown ul{position:absolute;display:none;margin:0;padding:0;float:left;clear:both;border:1px solid #667bce; background:#FFF;}
+.dropdown ul li{text-indent:5px;display:block;cursor:default;background:#FFF;height:19px;}
+.dropdown ul li.over{background:#39f; color:#FFF;}
+/*2010/11/3end*/
+
+.icon_arr{padding-right: 10px;background: url(http://www.sinaimg.cn/dy/search/images/search3.png) right center no-repeat;}/*2010/12/15*/
+
+
+	.ac_results {
+			width: 296px;
+			border: 1px solid gray;
+		background-color: white;
+		padding: 0;
+		margin: 0;
+		list-style: none;
+		overflow: hidden;
+		position: absolute;
+		z-index: 10000;
+		display: none;
+	}
+	
+	.ac_results li {
+		padding: 2px 5px;
+		white-space: nowrap;
+		color: #333;
+		text-align: left;
+		font-size:14px;
+		height:20px;
+		line-height:20px;
+			}
+	
+	.ac_over {
+		cursor: pointer;
+		background-color: #d9e1f6;
+	}
+</style>
+
+
+<script type="text/javascript" src="js/jquery-1.js"></script>
+
+
+<style type="text/css">
+	.ac_results {
+			width: 296px;
+			border: 1px solid gray;
+		background-color: white;
+		padding: 0;
+		margin: 0;
+		list-style: none;
+		overflow: hidden;
+		position: absolute;
+		z-index: 10000;
+		display: none;
+	}
+	
+	.ac_results li {
+		padding: 2px 5px;
+		white-space: nowrap;
+		color: #333;
+		text-align: left;
+		font-size:14px;
+		height:20px;
+		line-height:20px;
+			}
+	
+	.ac_over {
+		cursor: pointer;
+		background-color: #d9e1f6;
+	}
+	</style>
+
+
+
+ 
+</head>
+
+<body>
+<div class="wrap" id="wrap">
+<div style="position:relative;z-index:10000" id="top_column">
+	<div class="top clearfix" style="margin-top:5px;">
+		<div class="l">
+				<a   href="javascript:void(0)" class="selected" id="tab02">网页</a>	 
+				</div>
+		<div class="r">
+			<a href="http://so.story-ing.com/" target="_blank">故事搜</a><a href="javascript:void(0)" onclick="addFavorite()">收藏本页</a>
+		</div>
+	</div>
+	 
+</div>
+ 
+	<div class="top2">
+		<h1 class="l"><a href="so.story-ing.com"><img src="img/logo_big.png" alt="故事搜"></a></h1>
+		<div class="search-form l">
+		<form method="get" action="/" onsubmit="return submit_form(this)">
+			<input autocomplete="off" name="q" maxlength="100" value="ttt" class="ipt-02"   id="keyword" type="text"><input value="搜索" class="ipt-03" hidefocus="true" type="submit"> 
+			  
+					</form>
+		</div>
+	</div>
+	<div class="nav clearfix">
+		<div class="l">
+				</div>
+		<div class="r">
+					 搜索结果 <strong>500</strong> 条
+				</div>
+	</div>
+	<div class="main clearfix">
+						<div style="border-right: medium none; display: block;" class="l" id="sidebar">
+			<div class="sidebar">
+																<dl>
+				 <dt>其他热门</dt>
+				 <dd>
+					<ul>
+                                     
+                   <li><a href="http://search.sina.com.cn/?q=ttt&amp;c=news&amp;from=index&amp;a=&amp;filter=1&amp;range=all&amp;sort=time&amp;t=3_5_6&amp;_lid=89c553543d41245f48702d53558d387f">test1</a> </li>
+                                                                           
+                    	                 	
+                      <li><a href="http://search.sina.com.cn/?q=ttt&amp;c=news&amp;from=index&amp;a=&amp;filter=1&amp;range=all&amp;sort=time&amp;t=2&amp;_lid=89c553543d41245f48702d53558d387f">test2</a> </li>
+                                                                           
+                    	                      
+                    	                       
+                    	                     					</ul>
+				 </dd>
+				</dl>
+												<dl>
+				 <dt>相关搜索</dt>
+				 <dd>
+					<ul id="normal_time_list">
+                    
+                                      
+                                        
+                    					                   	
+                                                <li><a href="http://search.sina.com.cn/?q=ttt&amp;c=news&amp;from=index&amp;a=&amp;filter=1&amp;range=all&amp;sort=time&amp;time=h&amp;stime=&amp;etime=&amp;_lid=89c553543d41245f48702d53558d387f">aaa</a> </li>
+                                                                  					                   	
+                                                <li><a href="http://search.sina.com.cn/?q=ttt&amp;c=news&amp;from=index&amp;a=&amp;filter=1&amp;range=all&amp;sort=time&amp;time=d&amp;stime=&amp;etime=&amp;_lid=89c553543d41245f48702d53558d387f">bbbb</a> </li>
+                                                                  					                   	
+                                                <li><a href="http://search.sina.com.cn/?q=ttt&amp;c=news&amp;from=index&amp;a=&amp;filter=1&amp;range=all&amp;sort=time&amp;time=w&amp;stime=&amp;etime=&amp;_lid=89c553543d41245f48702d53558d387f">cccc</a> </li>
+                                                                  					                   	
+                                                <li><a href="http://search.sina.com.cn/?q=ttt&amp;c=news&amp;from=index&amp;a=&amp;filter=1&amp;range=all&amp;sort=time&amp;time=m&amp;stime=&amp;etime=&amp;_lid=89c553543d41245f48702d53558d387f">dddd</a> </li>
+                                                                  					 
+                    		 				                     					                     		
+			                     					 </ul>
+				 
+					  
+					 
+				 
+				 </dd>
+				</dl>
+                <div id="customdate" class="cdatehost date_pick" style="display:none;">
+                <form action="/" method="get" onsubmit="return chkDateForm(this)" autocomplete="off">
+                	<input name="time" value="custom" type="hidden">
+					<p>从 <input id="s_time" name="stime" class="inp_txt hasDatepicker" type="text"><img title="..." alt="..." src="%E6%96%B0%E9%97%BB%E6%90%9C%E7%B4%A2_%E6%96%B0%E6%B5%AA%E6%90%9C%E7%B4%A2_%E6%96%B0%E6%B5%AA%E7%BD%91_files/calendar.gif" class="ui-datepicker-trigger"></p>
+                    <p>到 <input id="e_time" name="etime" class="inp_txt hasDatepicker" type="text"><img title="..." alt="..." src="%E6%96%B0%E9%97%BB%E6%90%9C%E7%B4%A2_%E6%96%B0%E6%B5%AA%E6%90%9C%E7%B4%A2_%E6%96%B0%E6%B5%AA%E7%BD%91_files/calendar.gif" class="ui-datepicker-trigger"></p>
+                    <p style="padding-right:43px;"><input name="" value="搜索" style="width: 48px; height: 23px;" type="submit"></p>
+                                                            <input name="q" value="ttt" type="hidden">
+                                                                                <input name="c" value="news" type="hidden">
+                                                                                <input name="from" value="index" type="hidden">
+                                                                                <input name="a" value="" type="hidden">
+                                        
+                 </form>
+				</div>
+
+  
+								<dl>
+												<dd></dd>
+				</dl>
+			</div>
+		</div>
+				<div style="border-left: 1px solid rgb(200, 213, 240);" class="result" id="result">
+
+											<a href="javascript:void(0)" class="sideopen" id="sidebtn" hidefocus="true" title="关闭侧边栏">关闭侧边栏</a>
+					
+		<div class="mod_bar">
+												 
+		 				
+						<span id="correct_box"></span>
+ 
+						
+		</div>
+						<div id="nav_result_container"></div>
+		
+<!-- 微博搜索直达区 -->
+<!-- liuxiaolong edited @2012.1.5  -->
+			<div class="wbret-wrap">
+		<span class="wbret-tt">
+			<h1 class="fred">ttt的相关微博</h1>
+		</span>
+				<span class="wbret-p1">
+			<span style="color: rgb(38, 162, 218);" class="wblink" s-role="wblink" url="http://weibo.com/1660844663/profile?&amp;Refer=sina_newsearch">温情梦呓</span><strong>: </strong>[放假啦]//@挚爱李珍基: 果然乔巴珍魅力无边啊TTT @流昔真名是吴杰超吴夏羡 //@Ring花椰菜: 哥啊~哥啊~看我怎么样? ^~^唔唔~ 
+		</span>
+					 
+			</div>
+	
+						
+					<!-- 文字新闻spider begin -->
+			<div class="box-result clearfix">
+				<div class="r-info r-info2">
+					<h2><a _order="1" _log="result" href="http://news.sina.com.cn/o/p/2012-04-18/102524290754.shtml" target="_blank">图文：视物模糊变形 当心老年黄斑变性</a> <span class="fgreen time">2012-04-18 10:25:31</span></h2>
+					<p class="content">首届湖北省医学会激光医学分会委员。从事眼底病诊疗工作10余年，擅长眼底血管性疾病的诊断和治疗。在眼科激光领域也有丰富独到的经验，擅长用多波长激光、<span style="color:#C03">TTT</span>激光、PDT激光仪及YAG激光治疗多种眼病。</p>
+					<p class="fgray">频道：<a _order="1" _log="result" href="http://news.sina.com.cn/" target="_blank" class="fblue">新闻</a>&nbsp;&nbsp;来源：荆楚网-楚天金报</p>
+												</div>
+			</div>
+			<!-- 文字新闻spider end -->
+						
+ 
+							 
+									<p class="from">以上结果为<strong>故事搜</strong>搜集，结果属于你主动搜寻的结果不代表本网站赞成的内容。</p>
+					
+		</div>
+	
+	</div>
+
+
+	
+		 <script type="text/javascript">
+	//<![CDATA[
+	(function(){
+		//打开关闭边栏
+		var sidebar = $("#sidebar");
+		var sidebtn = $("#sidebtn");
+		var result = $("#result");
+		var sideMore = $("#amore");
+		var cm = $("#cmore");
+		 
+
+		function toggleSidebar() {
+			var sidebarHeight = sidebar[0].style.display=='none' ? 0 : sidebar.outerHeight()
+			if (result.outerHeight() < sidebarHeight){
+				result.css("border-left", "none");
+				sidebar.css("border-right", "1px solid #C8D5F0");
+			} else {
+				result.css("border-left", "1px solid #C8D5F0");
+				sidebar.css("border-right", "none");
+			}
+		}
+
+		function openfilter(){
+			sidebar.animate({width:"show"},"fast",function(){
+				sideMore.css("visibility","visible");
+				sidebtn[0].className = "sideopen";
+				sidebtn.html("关闭侧边栏");
+				sidebtn[0].title = "关闭侧边栏";
+				
+				cm.width(cm.parent().width());
+			});
+									
+						toggleSidebar();
+			 
+		 
+		}
+		
+		function closefilter(){
+			sideMore.css("visibility","hidden");
+			sidebar.animate({width:"hide"},"slow",function(){
+				sidebtn[0].className = "sideclose";
+				sidebtn.html("打开侧边栏");
+				sidebtn[0].title = "打开侧边栏";
+
+												
+								toggleSidebar();
+			});
+ 
+		}
+
+		toggleSidebar();
+		
+			   	sidebtn.toggle(closefilter,openfilter);
+		
+	 
+	  })();		
+	//]]>
+	</script>
+
+				<!-- 在结果中搜索 begin -->
+<div class="search-form search-form-bot">
+	 <!-- 2010/11/3 begin -->
+    <form method="get" action="/" onsubmit="return submit_form(this)">
+        <input value="ttt" name="q" type="hidden">
+	 
+        <input name="si_q" maxlength="100" value="ttt" class="ipt-02" onfocus="if(this.value=='请输入关键词'){this.value='';this.style.color='#333'}" onblur="if(this.value==''){this.value='请输入关键词';this.style.color='#999'};" style="color: rgb(153, 153, 153);" type="text"><input value="搜索" class="ipt-03 ipt-03b" hidefocus="true" type="submit">
+                                        <input value="news" name="c" type="hidden">
+                                <input value="index" name="from" type="hidden">
+                                <input value="" name="a" type="hidden">
+                    </form>
+    <!-- 2010/11/3 end -->
+</div>
+ 
+	
+ 
+<!-- ie6 下按钮hover状态改变 -->    
+<!--[if lte IE 6]>
+<script type="text/javascript">
+	(function(){
+		var inps = document.getElementsByTagName("input");
+		for(i=0,len=inps.length;i<len;i++){
+				if(inps[i].className.match("ipt-03")){
+						inps[i].onmouseover = function(){
+								this.className += " hover";
+							}
+						inps[i].onmouseout = function(){
+								this.className =this.className.replace(/ hover/g,"");
+							}	
+					}
+			}			
+	})();
+</script>
+<![endif]--></div>
+
+
+ 
+ 
+
+
+
+<ul style="top: 93px; left: 421.5px; display: none;" class="ac_results"></ul></body></html>

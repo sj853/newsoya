@@ -1,0 +1,243 @@
+/* 通用 */
+html, body, ul, li, ol , dl , dd , dt , p, h1, h2, h3, h4, h5, h6, form, fieldset, legend , table, td, img {margin: 0;padding: 0;}
+input,select,textarea{margin:0;}
+fieldset,img{border:none;}
+address,caption,cite,code,dfn,em,th,var {font-style: normal;font-weight: normal;}
+ul,ol{list-style-type:none;}
+select,input{vertical-align:middle;}
+select,input,textarea {font-size:12px;}
+body {background:#fff;color:#333;font:12px/1.67em "宋体"; }
+.clearfix:after{content:"."; display:block; height:0; visibility:hidden;clear:both;}
+.clearfix{zoom:1;}
+.clearit{clear:both;height:0px;overflow:hidden;  }
+.lh20{line-height:20px; }
+.lh23{line-height:23px; }
+.sp10{height:10px;overflow:hidden;}
+
+.f12 {font-size:12px;}
+.f14 {font-size:14px;}
+.fB{font-weight:bold;}
+.fwhite,a.fwhite{color:#fff;}
+
+.fblack{color:#000;}
+.fred{color:#c00;}
+.fgreen{color:#009900;font-size:12px;}
+a.fnoL{text-decoration:none;}
+a.fnoL:hover{text-decoration:underline;}
+.fB{font-weight:bold;}
+.fgray{color:#999;}
+.space{height:10px;background:#fff;overflow:hidden;clear:both;}
+
+/* liuxiaolong added @ 2011.12.16 */
+.fblue {color:#000099;}
+.wbret-wrap { margin-top:10px; margin-bottom:19px; width:538px; display:block; padding:10px 15px; background-color:#f2f6f9; border-bottom:1px dashed #c3d0ed; }
+a.wbret-wrap, a.wbret-wrap:link, a.wbret-wrap:visited, a.wbret-wrap:active, a.wbret-wrap:hover, a.wbret-wrap:focus { text-decoration:none; }
+.wbret-tt { display:block; padding:0 0 0 20px; }
+.wbret-tt span { text-decoration:none; font-size:14px; }
+.wbret-p1 { display:block; padding:10px 0 5px 0; border-bottom:1px dotted #ccc; font-size:12px; color:#333; }
+.wbret-date1 { display:block; color:#999; }
+.wbret-p2 { display:block; padding:5px 0 5px 0; font-size:12px; color:#333;}
+.wbret-link1 { padding:0; color:#000099; }
+a.wbret-link1:link, a.wbret-link1:visited { color:#00099; text-decoration:none; }
+a.wbret-link1:active, a.wbret-link1:hover, a.wbret-link1:focus { text-decoration:underline; }
+.wbret-p3 { display:block; padding:0; font-size:12px; }
+.wblink { color:#26A2DA; }
+
+a {color:#000099;text-decoration:none;}
+a:hover{color: #f00;text-decoration:underline;}
+
+.tac{text-align:center; }
+.tar{text-align:right; }
+.pad10{padding:10px;}
+
+.wrap{width:950px;margin:0 auto; }
+/*弹出层专用*/
+a.fred{color:#c00;}
+.layer-frame { border:0; position:absolute; filter: alpha(opacity=0);}
+.l{float:left; }
+.r{float:right; }
+.r a{margin-left:10px; }
+.r a.style_a{margin-left:0px; }
+.r .style_box{border-right:dotted 1px #ccc;margin-right:5px;padding-right:10px}
+.r .style_cion{margin-left:0}
+.top{overflow:hidden; position:relative;line-height:30px;padding:0 10px 0 5px;background:#8697D9;}
+.top .l a { float:left; display:inline; margin:0 5px; outline:0 }
+ 
+.top a:link,.top a:visited { text-decoration:none; color:#fff; }
+.top a:hover{ color:#FFFF99; }  
+.top .l a.selected { background:url(../img/sub_nav_cur.png) center 100% no-repeat; color:#FFFF99; }
+
+.top a:hover,.top a:active,.top a:focus { text-decoration:none;}
+
+
+.top2{position: relative;z-index:100;background:url(../img/top2_bg.png) repeat-x;height:95px;}/*2010/11/3*/
+.top2 h1{padding:17px 0 0 20px;}
+.search-form{padding:32px 0 0 11px;zoom:1;}
+.search-form a:hover,.search-form a:focus { text-decoration:none;}
+.ipt-02{border:1px solid #667BCE;padding:2px;line-height:20px; height:20px;font-size:14px;width:292px;margin:0 -1px 0 0;}
+
+input.ipt-03 { background:url(../img/sub_btn.png); width:70px; height:26px; border:none; color:#fff; margin:0 3px 0 0;cursor:pointer;outline:none 0}
+input.ipt-03:hover,input.ipt-03.hover{background-image:url(../img/btn_hover.png);}
+input.ipt-03:focus,input.ipt-03:active{outline:none 0;border:none}
+input.ipt-03::-moz-focus-inner { border: 0; }
+/*2010/11/12*/
+input.ipt-03b{background-image:url(../img/sub_btn2.png);width: 84px;}
+input.ipt-03b:hover,input.hoverb{background:url(../img/sub_btn2.png) 0 -30px no-repeat;}
+
+.sec_tit h2{font-weight:bold; margin:-10px 0 0px; font-family:"微软雅黑","黑体"; font-size:18px}
+
+.nav {background:#ECEDF9; line-height:30px;padding:0 10px;color:#666; }
+.nav .r{color:#787878; position:relative}
+.nav .r strong{font-weight:normal;/*color:#000*/;zoom:1}
+.nav a:hover,.nav a:focus{ text-decoration:none;}
+
+.nav2{background:#eef7f9;margin-top:1px; line-height:30px;padding:0 10px; }
+.nav2 .l{border-right:1px solid #cfe9ef;width:150px; }
+.nav2 .r{line-height:normal;height:22px; padding:6px 0 0 0 ; }
+.main { border-bottom:1px solid #C8D5F0; cursor:default;}
+.main .l { width:140px; cursor:auto;}
+.main .l dl { padding:23px 0 0 15px; }
+.main .l dt{padding:0 0 0 7px;}
+.main .l li{padding-left:7px;}
+.main .l li.selected {background:url(../img/ss_cl_009.png) no-repeat 0 center; color:#c00; }
+.main .l li.selected a{text-decoration:none; color:#c00;}
+
+.main .l li span{font-family:arial;font-size:11px;}
+.main .l li span a {color:#090;}
+.main .l li.limore{position:relative; padding-left:0px;}
+.main .l li.limore div.more-link div {padding-left:7px;}
+.main .l li.limore .more-link a{height:20px;line-height:20px; }
+.main .l li a.a_num {color:#090; text-decoration:none;}
+.main .l li a.a_num:hover,
+.main .l li a.a_num:active,
+.main .l li a.a_num:focus {color: #f00;text-decoration:none;}
+
+.main .result { float:left;border-left:1px solid #C8D5F0; padding:10px 0px 10px 10px; width:549px; zoom:1; cursor:auto; position:relative;}
+.main .zcad {float:left;width:210px;float:right;   }
+.foot{text-align:center; margin:10px 0; color:#666;}
+.foot a:hover,.foot a:focus{ text-decoration:none;}
+a.amore{background:url(../img/ss_cl_007.png) no-repeat 100% -88px; padding-right:15px; }
+a.amore2{background:url(../img/ss_cl_007.png) no-repeat 100% -49px; padding-right:15px; }
+
+.list-more{position:absolute;left:5px;top:18px;width:95px; z-index:10000;}
+.list-more .more-arr{background: url(../img/sea_m_arr.png) no-repeat 10px 0;height:5px;overflow:hidden;  position:relative;margin-bottom:-1px;zoom:1 }
+.ipt-01{border:1px solid #60a9cc;padding:3px;line-height:20px;height:20px; width:426px; margin:0;float:left; font-size:14px;outline:none}
+.more-link{border:1px solid #687DCE;background:#fff; padding:3px 0 0 0;}
+.more-link a{display:block;margin:1px;line-height:24px;padding:0 0 0 13px;text-decoration:none;background:#fff;zoom:1;height:24px;overflow:hidden;  }
+.more-link a:hover{background-color:#ECEEF9;text-decoration:none; color:#000099; }
+.more-link .line-dot{background:url(../img/ss_cl_004.png) repeat-x;}
+.data-select{background:url(../img/ss_cl_011.png) no-repeat 95% center;border:1px solid #8fcee0;padding:2px;height:14px;line-height:14px;width:80px; cursor:pointer;  }
+.box-define{padding:0 0 0 7px;}
+.box-define p{padding:2px 0;}
+a.areset{background:url(../img/ss_cl_012.png) no-repeat 0 center;padding:0 0 0 15px; }
+a.back { background:url(../img/back.png) no-repeat 0 center; padding:0 0 0 12px; margin:0 0 0 -10px; }
+
+/* 内容顶部提示区域 mod_bar */
+.mod_bar { zoom:1; overflow:hidden; padding:0 0 5px; width:559px; margin-left:10px;}
+			
+#sidebtn{background:url(../img/side_arr.png) no-repeat 0 0;display:block; position:absolute; width:11px;height:30px;overflow:hidden;text-indent:-999em;margin:0 0 0 -21px;padding:0;outline:none;}
+a#sidebtn.sideclose{background-position:100% 0;margin-left:-10px; }
+a.sideopen{}
+#sidebtn:hover{background-position:0 -30px; }
+a#sidebtn.sideclose:hover{background-position:100% 100%;}
+
+.result h2{line-height:24px; }
+.box-result { width: 549px;margin:5px 0 19px; zoom:1;padding: 5px 9px;border: 1px solid #fff;}/*2010/11/22*/
+.box-result .r-img{float:left; width:140px; position:relative;}
+.box-result .r-img .video{position:absolute;left:5px;bottom:5px;*bottom:9px;border:none;}
+a.a-img img{border:1px solid #ccc;padding:1px;}
+a.a-img:hover img{border-color:#69c;}
+.box-result .r-info{float:left;width:409px;/* overflow:hidden;*/ }
+.box-result .r-info p{word-wrap:break-word;word-break:break-all;} 
+
+.box-result .r-info p .col3{display:inline-block;width:22%;overflow:hidden; height:16px;}
+.box-result .r-info p .update{width:45%}
+/*新添co3 by youhua 2010-8-20,modify width by Han 8-23 */
+.box-result .r-info2{float:none;width:auto;  }
+.box-result h2{font:normal normal normal 14px/1.67em "宋体"; }
+.box-result h2 .fgreen { font-size:12px;}
+a strong.highlight, a:link strong.highlight, a:visited strong.highlight, .highlight { color:#c00; font-weight:normal; }
+a strong.highlight { text-decoration:underline }
+.box-result .fblue{color:#6699cc;text-decoration:none; }
+/*.box-result .r-info h2 a {padding-right:10px;}*/
+.acmt{background:url(../img/ss_cl_014.png) no-repeat 0 center;padding-left:12px; }
+.box-result a:visited{color:#800080;}
+.box-result a.fblue:visited{color:#6699cc;}
+.box-result a.fblue:hover,.box-result a.fblue:focus{color:#f00;text-decoration:none; }
+.box-result .time {white-space:nowrap;}
+.box-result span.zts {white-space:nowrap;}
+img.noimg{vertical-align:middle;margin:0 2px;}
+.list-img{overflow:hidden; zoom:1;padding:5px 0 0 0; height:94px;}
+.list-img li{float:left; margin:0 5px 0 0 ;display:inline;}
+.list-img li img{display:block; margin:0 auto;float:left; }
+.list-img li.lastall {border:none;width:auto;padding:78px 0 0 15px; }
+
+.result .hover{background: #F3F7FA;border-color: #E0EBF1}/*2010/11/22*/
+ 
+
+
+
+
+
+.search-form-bot{background:#EBEDFA;padding:10px 20px 20px;}
+.search-form-bot form { /*width:530px;*/ width:400px; margin:0 auto; }
+.sidebar { width:130px;padding-right:10px; }
+.more-keyword a,.result a{text-decoration:none; }
+.from{color:#666;padding:10px 0 15px; }
+.from strong{font-weight:normal;color:#000}
+.from strong a{text-decoration:none;color:#000; }
+/*隔行换色*/
+.zebra { background:#F3F7FA; padding:10px; }/* modified by  youhuata 0415 */
+.zebra .r-info{ width:389px; }/* added by youhuata 0415 */
+.zebra .r-info2{float:none;width:auto;  }
+
+
+
+
+
+
+
+/* 在结果中搜 */
+#search_more{padding:0 20px; font-size:14px; height:300px; position:relative; z-index:2}
+#search_more h2{font-weight:bold; margin:-10px 0 18px; font-family:"微软雅黑","黑体"; font-size:18px; position:relative; z-index:20}
+#search_more p{line-height:157%}
+
+.main .l li .type-more li{ padding-left:7px;}/* added by youhuata 2010-03-26  16:33 */
+.type-more{zoom:1; overflow:hidden}
+
+/* range radio add pointer */
+label.label_range { cursor:pointer;}
+label.label_range input { cursor:pointer;}
+ 
+/* 图片搜索 按效果高清标识 */
+img.size_hd{ /*vertical-align:text-top;*/ margin-left:2px;}
+/*去掉hover 下划线*/
+.sidebar a:hover,.sidebar a:focus { text-decoration:none;}
+ 
+	.ac_results {
+			width: 296px;
+			border: 1px solid gray;
+		background-color: white;
+		padding: 0;
+		margin: 0;
+		list-style: none;
+		overflow: hidden;
+		position: absolute;
+		z-index: 10000;
+		display: none;
+	}
+	
+	.ac_results li {
+		padding: 2px 5px;
+		white-space: nowrap;
+		color: #333;
+		text-align: left;
+		font-size:14px;
+		height:20px;
+		line-height:20px;
+			}
+	
+	.ac_over {
+		cursor: pointer;
+		background-color: #d9e1f6;
+	}

@@ -6,6 +6,5 @@
 <meta name="keywords" content="<?php echo $config['site_keywords']?>">
 <meta name="description" content="<?php echo $siteContent?>">
 <link rel="shortcut icon" href="img/favicon.ico" />
-<link type="text/css" rel="stylesheet" href="css/common.css">
-<script src="js/common.js" type="text/javascript"></script>
-</head>
+
+
