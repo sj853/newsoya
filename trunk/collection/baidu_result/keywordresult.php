@@ -2,8 +2,7 @@
 
  
 
-	include_once ('../include.php');
-	require_once ("../database.php");
+	include_once ('include.php');	 
 	include_once ("data_cache.php");
 	
 	
@@ -16,16 +15,21 @@
 			$sql = "select id,keyword from kw_task where isok=0 order by time desc,hotval desc";
 
 			$rs = $db->GetResultSet($sql);
-			$db->Close();
+			
 			while ($row = mysql_fetch_array($rs)) {
 
 				$keys = $row['keyword'];
 				$kid = $row['id'];
 
-				shuffleResult($keys);
+				if(shuffleResult($keys)>0){
+					$sql = "update kw_task set isok=1 where id=".$rs['id'];
+					$db->Execute($sql);
+					 
+				}
 				 
 			}
 			
+			$db->Close();
 
 		}
 	
@@ -37,7 +41,7 @@
 		 $result['url'] = array_merge($rs[1],$rs2[1]);
 		 $result['likes'] = getRelatedResultByBaiDu($keys);
 		 shuffle($result);
-		setCache($keys,$result);
+		 return setCache($keys,$result);
 	}
 	
 	function getRelatedResultByBaiDu($keys){

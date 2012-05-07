@@ -4,7 +4,7 @@
 	
 	 
 	$db = Database :: Connect();	 
-	$sql = "select id,keyword,hotval from keyword_task where type=4 and hotval=1  order by rand() limit 9";
+	$sql = "select id,keyword,hotlevel from kw_task where type=1 and hotlevel=1  order by rand() limit 9";
 	$aizhanresult = $db->GetResultSet($sql);
 	$db->Close();
 	
@@ -43,7 +43,7 @@
 						$i=1;
 					 while($row = mysql_fetch_array($aizhanresult)){
 					?>
-					<li><?php echo $i++?>.<a href=""><?php echo $row['keyword']?></a></li>				 
+					<li><?php echo $i++?>.<a href="search.php?q=<?php echo $row['keyword']?>"><?php echo $row['keyword']?></a></li>				 
 					<?php } ?>
 					</ul>
 				</div>
