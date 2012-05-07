@@ -14,8 +14,14 @@ function getCache($key,$p=0){
 	{
 		return '';
 	}
-	
-	return unserialize(file_get_contents($dir));
+	  
+	   
+	 
+	 
+	$dataStr = file_get_contents($dir);
+
+
+	return unserialize($dataStr);
 }
 function setCache($key,$arr,$p=0){
  
