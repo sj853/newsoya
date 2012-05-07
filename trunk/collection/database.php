@@ -302,16 +302,16 @@ class Database
 	public function insert_keywords($keywords_array,$type,$type_desc){
 		foreach ($keywords_array as $kwds=>$hotval) {
 			 	
-			$sql = "select * from keyword_task where keyword = '$kwds'";
+			$sql = "select * from kw_task where keyword = '$kwds'";
 			 
 			if($this->GetCount($sql)>0){
-				$sql = "update keyword_task set" .
-	    		" hotval=$hotval,time=now() where keyword='$kwds'";
+				$sql = "update kw_task set" .
+	    		" hotlevel=$hotval,time=now() where keyword='$kwds'";
 				
 				}else{
 				
-				$sql = "insert into keyword_task" .
-	    		"(keyword,hotval,type,type_desc,time)" .
+				$sql = "insert into kw_task" .
+	    		"(keyword,hotlevel,type,type_desc,time)" .
 	    		" values('$kwds',$hotval,$type,'$type_desc',now())";
 								
 			}

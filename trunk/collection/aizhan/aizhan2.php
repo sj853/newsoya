@@ -9,10 +9,10 @@
 
 
 	 
-	//function insertKeyWords(){
+	function insertKeyWords(){
 	$db = Database :: Connect();
 	 
-	   $keyword = $db->GetSingleValOrDefault("select keyword from keyword_task where type=4 and hotval=1 order by time desc limit 1","");
+	   $keyword = $db->GetSingleValOrDefault("select keyword from kw_task where type=1 and hotlevel=1 order by time desc limit 1","");
 	
 	  
 	
@@ -42,9 +42,9 @@
 		  
 		  print_r($keywords_array);
 	   
-	//	$db->insert_keywords($keywords_array,4,'°®Õ¾¹Ø¼ü×Ö');
+		$db->insert_keywords($keywords_array,1,'çˆ±ç«™å…³é”®å­—');
 		
-	//	$db->Close();
+		$db->Close();
 	  
-	//}
+	}
 ?>

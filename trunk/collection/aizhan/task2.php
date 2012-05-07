@@ -13,7 +13,7 @@
 	do{
 	$run = include 'state.php';
 	if(!$run) {
-	die('��ֹͣ');
+	die('已停止');
 	}
 	insertKeyWords();
 	sleep($interval); // wait 15 minutes
