@@ -25,13 +25,13 @@
 	
   
 	 
-	
+	 
 	 include_once ("./function/keywordresult.php");
 	if($db->GetSingleValOrDefault($sql,0)==0){
 	    
 		 if(shuffleResult($keys)>0){
 		 
-					$sql = "insert into kw_task(keyword,type,type_desc,hotlevel,time) values('$keys',0,'用户查询',1,now())";
+					$sql = "insert into kw_task(keyword,type,type_desc,hotlevel,time,isok) values('$keys',0,'用户查询',1,now(),1)";
 					$db->Execute($sql);
 					 
 				}
