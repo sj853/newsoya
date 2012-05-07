@@ -34,7 +34,9 @@
 		}
 	
 	function shuffleResult($keys){
+
 		 $rs = getResultByBaiDu($keys,1);
+
 		 $rs2 = getResultByBaiDu($keys,2);
 		 $result['title'] = array_merge($rs[3],$rs2[3]);
 		 $result['content'] = array_merge($rs[2],$rs2[2]);

@@ -24,19 +24,31 @@
 	}
 	
   
-	 
-	 
+	  
 	 include_once ("./function/keywordresult.php");
-	if($db->GetSingleValOrDefault($sql,0)==0){
-	    
+	 
+	if($db->GetCount($sql)<1){
+
+	$sql = "insert into kw_task(keyword,type,type_desc,hotlevel,time,isok) values('$keys',0,'用户查询',1,now(),1)";
+	   
 		 if(shuffleResult($keys)>0){
 		 
-					$sql = "insert into kw_task(keyword,type,type_desc,hotlevel,time,isok) values('$keys',0,'用户查询',1,now(),1)";
+					
 					$db->Execute($sql);
 					 
 				}
+		}else if($db->GetSingleValOrDefault($sql,0)==0){
+		$sql = "update kw_task  set isok=1 where keyword='$keys'";
+		 if(shuffleResult($keys)>0){
+		 
+					
+					$db->Execute($sql);
+					 
+				}
+		}
+		
+		
 	  
-		}	 	 
 		 
 		$result = getCache($keys);
 	 
@@ -83,7 +95,7 @@ if( !(/\((iPhone|iPad|iPod)/i.test(navigator.userAgent)) ){
 		<h1 class="l"><a href="so.story-ing.com"><img src="img/logo_big.png" alt="故事搜"></a></h1>
 		<div class="search-form l">
 		<form method="get" action="/" onsubmit="return submit_form(this)">
-			<input autocomplete="off" name="q" maxlength="100" value="ttt" class="ipt-02"   id="keyword" type="text"><input value="搜索" class="ipt-03" hidefocus="true" type="submit"> 
+			<input autocomplete="off" name="q" maxlength="100" value="<?php echo $keys?>" class="ipt-02"   id="keyword" type="text"><input value="搜索" class="ipt-03" hidefocus="true" type="submit"> 
 			  
 					</form>
 		</div>
@@ -176,7 +188,11 @@ if( !(/\((iPhone|iPad|iPod)/i.test(navigator.userAgent)) ){
 					<p class="fgray">频道：<a _order="1" _log="result" href="http://news.sina.com.cn/" target="_blank" class="fblue">新闻</a>&nbsp;&nbsp;来源：荆楚网-楚天金报</p>
 												</div>
 			</div>
+		 <?php print_r($result);?>
 			<?php foreach($result as $rs) {?>
+			
+			<?php print_r($rs);?>
+			<?php 	echo mb_detect_encoding($rs[3]);echo $t =iconv('ASCII','UTF-8//IGNORE',$rs[3]);echo mb_detect_encoding($t); ?>
 			<div class="box-result clearfix">
 				<div class="r-info r-info2">
 					<h2><a _order="1" _log="result" href="<?php echo 'jump.php?to='.base64_encode($rs[1])?>" target="_blank"><?php echo $rs[3]?></a> <span class="fgreen time">2012-04-18 10:25:31</span></h2>
@@ -262,7 +278,7 @@ if( !(/\((iPhone|iPad|iPod)/i.test(navigator.userAgent)) ){
     <form method="get" action="/" onsubmit="return submit_form(this)">
         <input value="ttt" name="q" type="hidden">
 	 
-        <input name="si_q" maxlength="100" value="ttt" class="ipt-02" onfocus="if(this.value=='请输入关键词'){this.value='';this.style.color='#333'}" onblur="if(this.value==''){this.value='请输入关键词';this.style.color='#999'};"   type="text"><input value="搜索" class="ipt-03 ipt-03b" hidefocus="true" type="submit">
+        <input name="si_q" maxlength="100" value="<?php echo $keys?>" class="ipt-02" onfocus="if(this.value=='请输入关键词'){this.value='';this.style.color='#333'}" onblur="if(this.value==''){this.value='请输入关键词';this.style.color='#999'};"   type="text"><input value="搜索" class="ipt-03 ipt-03b" hidefocus="true" type="submit">
                                         <input value="news" name="c" type="hidden">
                                 <input value="index" name="from" type="hidden">
                                 <input value="" name="a" type="hidden">
