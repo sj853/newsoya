@@ -10,22 +10,6 @@ body {background:#fff;color:#333;padding:5px 0;font:12px/20px "宋体"; }
 .clearfix:after{content:"."; display:block; height:0; visibility:hidden;clear:both;}
 .clearfix{zoom:1;}
 .clearit{clear:both;height:0px;overflow:hidden;  }
-.lh20{line-height:20px; }
-.lh23{line-height:23px; }
-.sp10{height:10px;overflow:hidden;}
-
-.f12 {font-size:12px;}
-.f14 {font-size:14px;}
-.fB{font-weight:bold;}
-.fwhite,a.fwhite{color:#fff;}
-
-.fblack{color:#000;}
-.fred{color:#c00;}
-a.fnoL{text-decoration:none;}
-a.fnoL:hover{text-decoration:none;}
-.fB{font-weight:bold;}
-.fgray{color:#666;}
-.space{height:10px;background:#fff;overflow:hidden;clear:both;}
 
 a {color:#000099;text-decoration:none;}
 a:hover {color: #f00;text-decoration:none;}
@@ -33,16 +17,15 @@ a:hover {color: #f00;text-decoration:none;}
 .wrap{margin: 0 auto;padding:0 10px;}
 .tac{text-align:center; }
 .tar{text-align:right; }
-.pad10{padding:10px;}
 
 .top{text-align:right;padding-top:4px; width:950px; margin:auto;}
 h1{padding:50px 0 20px 0 ;}
 .box-search{width:600px;margin:0 auto;position:relative;}
 .list-type{font:14px/36px "宋体"; position:relative;overflow:hidden;height:36px; }
 .list-type a{float:left;margin:0 7px;display:inline;height:36px;text-decoration:none;outline:none; }
-.list-type a.selected{background:url(http://www.sinaimg.cn/dy/search/images/sea_arr.png) no-repeat center 100%;color:#c00; }
+.list-type a.selected{background:url(../img/sea_arr.png) no-repeat center 100%;color:#c00; }
 .list-more{position:absolute;left:420px;top:26px;width:70px; }
-.list-more .more-arr{background: url(http://www.sinaimg.cn/dy/search/images/sea_m_arr.png) no-repeat 12px 0;height:5px;overflow:hidden;  position:relative;margin-bottom:-1px; }
+.list-more .more-arr{background: url(../img/sea_m_arr.png) no-repeat 12px 0;height:5px;overflow:hidden;  position:relative;margin-bottom:-1px; }
 .search-ipt{margin-top:-4px; }
 .search-ipt form a{line-height:36px; margin-left:1em}
 
@@ -53,9 +36,9 @@ h1{padding:50px 0 20px 0 ;}
 .more-link{border:1px solid #667BCE;background:#fff; padding:7px 0 0 0;}
 .more-link a{display:block;margin:1px;line-height:24px;padding:0 0 0 13px;text-decoration:none;background:#fff;zoom:1;height:24px;overflow:hidden;  }
 .more-link a:hover{background-color:#ECEEF9;text-decoration:none; color:#000099; }
-.more-link .line-dot{background:url(http://www.sinaimg.cn/dy/search/images/ss_cl_004.png) repeat-x;}
-input.ipt-submit{background:url(http://www.sinaimg.cn/dy/search/images/sea_btn.png);width:70px;height:30px; border:none;color:#fff;font-size:14px;margin:0px 0px 0 -1px; cursor:pointer; outline:none 0}
-input.ipt-submit:hover,input.ipt-submit.hover{background:url(http://www.sinaimg.cn/dy/search/images/sea_btn_hover.png);}
+.more-link .line-dot{background:url(../img/ss_cl_004.png) repeat-x;}
+input.ipt-submit{background:url(../img/sea_btn.png);width:70px;height:30px; border:none;color:#fff;font-size:14px;margin:0px 0px 0 -1px; cursor:pointer; outline:none 0}
+input.ipt-submit:hover,input.ipt-submit.hover{background:url(../img/sea_btn_hover.png);}
 input.ipt-submit:focus,input.ipt-submit:active{outline:none 0;border:none}
 input.ipt-submit::-moz-focus-inner { border: 0; }
 
@@ -64,10 +47,7 @@ input.ipt-submit::-moz-focus-inner { border: 0; }
 .foot{text-align:center; margin:120px 0 0 0 ;}
 .search-ipt,.list-type{padding-left:20px;}
 
-/*弹出层专用央视*/
-.layer-frame{border:0;position:absolute;}
-
-.icon_arr{padding-right: 13px;background: url(http://www.sinaimg.cn/dy/search/images/search2.png) right center no-repeat;_background-position: right 15px;}/*2010/12/15*/
+ 
 
  .latest{list-style:none outside none;width:700px;}
  .latest li{  float: left; padding: 3px 8px;width: 180px;}

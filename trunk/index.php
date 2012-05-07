@@ -1,10 +1,7 @@
 <?php 
 
-	
 	require_once ("include/head.php");
 	
-
-
 	 
 	$db = Database :: Connect();	 
 	$sql = "select id,keyword,hotval from keyword_task where type=4 and hotval=1  order by rand() limit 9";
@@ -13,7 +10,10 @@
 	
 ?>
 <?php include "header.php"?>
+<link type="text/css" rel="stylesheet" href="css/common.css">
+<script src="js/common.js" type="text/javascript"></script>
 
+</head>
 <body>
 <div class="wrap">
 	<div class="top">
@@ -52,10 +52,7 @@
 		<div id="link">
 		</div>
 		
-		<div class="foot">
-		<hr>
-            <a href="javascript:void(0);" onclick="setHomePage();">设为首页</a> - <a href="http://corp.sina.com.cn/chn/" target="_blank">故事搜简介</a> 
-        </div>
+		<?php include("footer.php")?>
  
 	</div>
 </div> 
