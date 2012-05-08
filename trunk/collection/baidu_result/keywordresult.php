@@ -34,14 +34,28 @@
 		}
 	
 	function shuffleResult($keys){
+
 		 $rs = getResultByBaiDu($keys,1);
+
 		 $rs2 = getResultByBaiDu($keys,2);
-		 $result['title'] = array_merge($rs[3],$rs2[3]);
-		 $result['content'] = array_merge($rs[2],$rs2[2]);
+		 $result['title'] = array_merge($rs[2],$rs2[2]);
+		 $result['content'] = array_merge($rs[3],$rs2[3]);
 		 $result['url'] = array_merge($rs[1],$rs2[1]);
-		 $result['likes'] = getRelatedResultByBaiDu($keys);
-		 shuffle($result);
-		 return setCache($keys,$result);
+		 
+		 $total = array();
+		 
+		 for($i=0;$i<count($result['title']);$i++){
+			$total['rs'][$i] = array(
+				'title'=>$result['title'][$i],
+				'content'=>$result['content'][$i],
+				'url'=>$result['url'][$i]
+			);
+		 }
+		 shuffle($total['rs']);
+ 
+		 $total['likes'] = getRelatedResultByBaiDu($keys);
+ 
+		 return setCache($keys,$total);
 	}
 	
 	function getRelatedResultByBaiDu($keys){

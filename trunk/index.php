@@ -43,7 +43,7 @@
 						$i=1;
 					 while($row = mysql_fetch_array($aizhanresult)){
 					?>
-					<li><?php echo $i++?>.<a href="search.php?q=<?php echo $row['keyword']?>"><?php echo $row['keyword']?></a></li>				 
+					<li><?php echo $i++?>.<a href="q_<?php echo $row['id']?>.html"><?php echo $row['keyword']?></a></li>				 
 					<?php } ?>
 					</ul>
 				</div>
