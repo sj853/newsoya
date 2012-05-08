@@ -1,5 +1,7 @@
 <?php
 
+$dataPath = "";
+
 function mb_unserialize ($serial_str) {
 $out = preg_replace('!s:(\d+):"(.*?)";!se', "'s:'.strlen('$2').':\"$2\";'", $serial_str );
 return  unserialize ($out); 
@@ -34,7 +36,7 @@ function setCache($key,$arr,$p=0){
 	
 	$dir4 = $p>0?$dir4.'_'.$p:$dir4;
 	
-	$dir = dirname(__FILE__)."/cachehash/$dir1/$dir2/";
+	$dir = $dataPath."/cachehash/$dir1/$dir2/";
  
 	$content = serialize($arr);
 	return write_data($dir,$dir4.'.txt',$content);
