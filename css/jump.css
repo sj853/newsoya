@@ -1,0 +1,20 @@
+ body{color:#000; font-family:"宋体",Arial, Helvetica, sans-serif; font-size:12px;background:url("img/wait_bg.gif") repeat;margin:0;padding:0;}
+h1,h2,h3,h4,h5,h6,p,form,dl,dt,dd,ul,ol,li,input{margin:0;padding:0;list-style:none outside}
+a{ color:#000; text-decoration:none;}
+a:hover{ color:#38939a; text-decoration:underline;}
+
+.wt_box{width:628px; margin:15% auto;}
+.wt_t{}
+.wt_m{background:url("img/waitbox_m.gif") repeat-y top left; width:589px; margin:0px auto; padding:20px 20px 10px 20px}
+.wt_m span{display:block; text-align:center; padding:0 0 10px 0}
+.center{text-align:center;line-height:30px;}
+.wt_b{background:url("img/waitbox_b.gif") no-repeat top left; height:7px;}
+
+
+.m_out_mid{text-align:center;line-height:30px;color:#cb4343; font-weight:bold; font-size:18px}
+.m_out_mid a{color:#373737; font-weight:normal}
+.m_out_mid_b{ border-bottom:1px dashed #dbdbdb; padding-bottom:10px;text-align:center;line-height:30px; font-size:12px;color:#767676}
+.m_out_mid_b a{color:#767676; font-weight:normal}
+.m_out_bottom{ width:420px; height:150px; margin:0 auto; text-align:center; font-size:12px; color:#767676; font-weight:normal; line-height:20px}
+.m_out_bottom strong{ font-size:18px; font-family:"微软雅黑"; padding-top:30px; display: inline-block; line-height:18px; padding-bottom:10px;color:#000}
+.m_out_bottom a{color:#b90000; font-size:12px;}

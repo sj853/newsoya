@@ -1,5 +1,10 @@
 <?php
+ 
 	require ("include/head.php");
+	
+	$start = microtime(true);
+
+
 	
 	$db = Database :: Connect();
 	 
@@ -52,6 +57,7 @@
 		 
 		$result = getCache($keys);
 	 
+	 
  
 		$db->Close();
 ?>
@@ -85,14 +91,14 @@ if( !(/\((iPhone|iPad|iPod)/i.test(navigator.userAgent)) ){
 				<a   href="javascript:void(0)" class="selected" id="tab02">网页</a>	 
 				</div>
 		<div class="r">
-			<a href="http://so.story-ing.com/" target="_blank">故事搜</a><a href="javascript:void(0)" onclick="addFavorite()">收藏本页</a>
+			<a href="index.php" target="_blank">故事搜</a><a href="javascript:void(0)" onclick="addFavorite()">收藏本页</a>
 		</div>
 	</div>
 	 
 </div>
  
 	<div class="top2">
-		<h1 class="l"><a href="so.story-ing.com"><img src="img/logo_big.png" alt="故事搜"></a></h1>
+		<h1 class="l"><a href="index.php"><img src="img/logo_big.png" alt="故事搜"></a></h1>
 		<div class="search-form l">
 		<form method="get" action="/" onsubmit="return submit_form(this)">
 			<input autocomplete="off" name="q" maxlength="100" value="<?php echo $keys?>" class="ipt-02"   id="keyword" type="text"><input value="搜索" class="ipt-03" hidefocus="true" type="submit"> 
@@ -104,44 +110,29 @@ if( !(/\((iPhone|iPad|iPod)/i.test(navigator.userAgent)) ){
 		<div class="l">
 				</div>
 		<div class="r">
-					 搜索结果 <strong>500</strong> 条
+					 用时 <strong><?php
+			$end= microtime(true);
+
+			echo  $end-$start; 
+ ?> </strong> 秒
 				</div>
 	</div>
 	<div class="main clearfix">
 						<div style="border-right: medium none; display: block;" class="l" id="sidebar">
 			<div class="sidebar">
-																<dl>
-				 <dt>其他热门</dt>
-				 <dd>
-					<ul>
-                                     
-                   <li><a href="http://search.sina.com.cn/?q=ttt&amp;c=news&amp;from=index&amp;a=&amp;filter=1&amp;range=all&amp;sort=time&amp;t=3_5_6&amp;_lid=89c553543d41245f48702d53558d387f">test1</a> </li>
-                                                                           
-                    	                 	
-                      <li><a href="http://search.sina.com.cn/?q=ttt&amp;c=news&amp;from=index&amp;a=&amp;filter=1&amp;range=all&amp;sort=time&amp;t=2&amp;_lid=89c553543d41245f48702d53558d387f">test2</a> </li>
-                                                                           
-                    	                      
-                    	                       
-                    	                     					</ul>
-				 </dd>
-				</dl>
-				
-				<dl>
+			
+			<dl>
 				 <dt>相关搜索</dt>
 				 <dd>
 					<ul id="normal_time_list">
                     
                                       
-                                        
+                                      <?php foreach($result['likes'] as $like) {?> 
                     					                   	
-                                                <li><a href="http://search.sina.com.cn/?q=ttt&amp;c=news&amp;from=index&amp;a=&amp;filter=1&amp;range=all&amp;sort=time&amp;time=h&amp;stime=&amp;etime=&amp;_lid=89c553543d41245f48702d53558d387f">aaa</a> </li>
+                                                <li><a href="search.php?q=<?php echo iconv('gb2312','utf-8',$like)?>"><?php echo iconv('gb2312','utf-8',$like)?></a> </li>
                                                                   					                   	
-                                                <li><a href="http://search.sina.com.cn/?q=ttt&amp;c=news&amp;from=index&amp;a=&amp;filter=1&amp;range=all&amp;sort=time&amp;time=d&amp;stime=&amp;etime=&amp;_lid=89c553543d41245f48702d53558d387f">bbbb</a> </li>
-                                                                  					                   	
-                                                <li><a href="http://search.sina.com.cn/?q=ttt&amp;c=news&amp;from=index&amp;a=&amp;filter=1&amp;range=all&amp;sort=time&amp;time=w&amp;stime=&amp;etime=&amp;_lid=89c553543d41245f48702d53558d387f">cccc</a> </li>
-                                                                  					                   	
-                                                <li><a href="http://search.sina.com.cn/?q=ttt&amp;c=news&amp;from=index&amp;a=&amp;filter=1&amp;range=all&amp;sort=time&amp;time=m&amp;stime=&amp;etime=&amp;_lid=89c553543d41245f48702d53558d387f">dddd</a> </li>
-                                                                  					 
+                                         
+                                              <?php }?>                   					 
                     		 				                     					                     		
 			                     					 </ul>
 				 
@@ -150,6 +141,19 @@ if( !(/\((iPhone|iPad|iPod)/i.test(navigator.userAgent)) ){
 				 
 				 </dd>
 				</dl>
+			
+					 <dl>
+				 <dt>今日热门</dt>
+				 <dd>
+					<ul>
+                     <?php while($aizhan=mysql_fetch_array($aizhanresult)){?>               
+                   <li><a href="q_<?php echo $aizhan['id']?>.html"><?php echo $aizhan['keyword']?></a> </li>
+                        <?php } ?>                                                  
+                  	</ul>
+				 </dd>
+				</dl>
+				
+				
              
  
 								 
@@ -171,37 +175,27 @@ if( !(/\((iPhone|iPad|iPod)/i.test(navigator.userAgent)) ){
  
 			<div class="wbret-wrap">
 		<span class="wbret-tt">
-			<h1 class="fred">ttt的相关微博</h1>
+			<h1 class="fred"><?php echo iconv('gb2312','UTF-8//IGNORE',$result['rs'][0]['title'])?></h1>
 		</span>
 				<span class="wbret-p1">
-			<span style="color: rgb(38, 162, 218);" class="wblink" s-role="wblink" url="http://weibo.com/1660844663/profile?&amp;Refer=sina_newsearch">温情梦呓</span><strong>: </strong>[放假啦]//@挚爱李珍基: 果然乔巴珍魅力无边啊TTT @流昔真名是吴杰超吴夏羡 //@Ring花椰菜: 哥啊~哥啊~看我怎么样? ^~^唔唔~ 
+			<span style="color: rgb(38, 162, 218);" class="wblink" s-role="wblink"><strong><h2 style="color:red;"><?php echo iconv('gb2312','UTF-8//IGNORE',$result['rs'][0]['content'])?> </h2></strong>
 		</span>
 					 
 			</div>
 	
-						
-					<!-- 文字新闻spider begin -->
+ 
+		 
+			<?php foreach($result['rs'] as $rs) {?>
+		 
 			<div class="box-result clearfix">
 				<div class="r-info r-info2">
-					<h2><a _order="1" _log="result" href="http://news.sina.com.cn/o/p/2012-04-18/102524290754.shtml" target="_blank">图文：视物模糊变形 当心老年黄斑变性</a> <span class="fgreen time">2012-04-18 10:25:31</span></h2>
-					<p class="content">首届湖北省医学会激光医学分会委员。从事眼底病诊疗工作10余年，擅长眼底血管性疾病的诊断和治疗。在眼科激光领域也有丰富独到的经验，擅长用多波长激光、<span style="color:#C03">TTT</span>激光、PDT激光仪及YAG激光治疗多种眼病。</p>
-					<p class="fgray">频道：<a _order="1" _log="result" href="http://news.sina.com.cn/" target="_blank" class="fblue">新闻</a>&nbsp;&nbsp;来源：荆楚网-楚天金报</p>
-												</div>
-			</div>
-		 <?php print_r($result);?>
-			<?php foreach($result as $rs) {?>
-			
-			<?php print_r($rs);?>
-			<?php 	echo mb_detect_encoding($rs[3]);echo $t =iconv('ASCII','UTF-8//IGNORE',$rs[3]);echo mb_detect_encoding($t); ?>
-			<div class="box-result clearfix">
-				<div class="r-info r-info2">
-					<h2><a _order="1" _log="result" href="<?php echo 'jump.php?to='.base64_encode($rs[1])?>" target="_blank"><?php echo $rs[3]?></a> <span class="fgreen time">2012-04-18 10:25:31</span></h2>
-					<p class="content"><?php echo $rs[2]?></p>
-					<p class="fgray"><?php echo $rs[1]?></p>
+					<h2><a _order="1" _log="result" href="<?php echo 'jump.php?to='.base64_encode(iconv('gb2312','utf-8',$rs['url']))?>" target="_blank"><?php echo iconv('gb2312','UTF-8//IGNORE',$rs['title'])?></a>  </h2>
+					<p class="content"><?php echo iconv('gb2312','UTF-8//IGNORE',$rs['content'])?></p>
+					<p class="fgray"><?php echo iconv('gb2312','UTF-8//IGNORE',$rs['url'])?></p>
 												</div>
 			</div>
 			<?php }?>
-			<!-- 文字新闻spider end -->
+		 
 						
  
 							 
@@ -272,9 +266,9 @@ if( !(/\((iPhone|iPad|iPod)/i.test(navigator.userAgent)) ){
 	//]]>
 	</script>
 
-				<!-- 在结果中搜索 begin -->
+		 
 <div class="search-form search-form-bot">
-	 <!-- 2010/11/3 begin -->
+ 
     <form method="get" action="/" onsubmit="return submit_form(this)">
         <input value="ttt" name="q" type="hidden">
 	 
@@ -283,7 +277,7 @@ if( !(/\((iPhone|iPad|iPod)/i.test(navigator.userAgent)) ){
                                 <input value="index" name="from" type="hidden">
                                 <input value="" name="a" type="hidden">
                     </form>
-    <!-- 2010/11/3 end -->
+  
 </div>
  
 	<?php include('footer.php')?>
